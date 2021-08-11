@@ -15,6 +15,7 @@ public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	private Rectangle teste;
+	Player player = new Player();
 
 	TextureRegion[] animationFrames;
 	Animation animation;
@@ -24,7 +25,7 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("Jonas-Sprite-Sheet.png");
+		player.setCharacter();
 		teste = new Rectangle();
 
 		teste.x = 284;
@@ -32,7 +33,7 @@ public class Game extends ApplicationAdapter {
 		teste.width = 64;
 		teste.height = 64;
 
-		TextureRegion[][] tmpFrames = TextureRegion.split(img,128,128);
+		/*TextureRegion[][] tmpFrames = TextureRegion.split(img,128,128);
 
 		animationFrames = new TextureRegion[6];
 		int index = 0;
@@ -41,7 +42,7 @@ public class Game extends ApplicationAdapter {
 				animationFrames[index++] = tmpFrames[0][i];
 		}
 
-		animation = new Animation(1f/6f,animationFrames);
+		animation = new Animation(1f/6f,animationFrames);*/
 	}
 
 	@Override
@@ -49,13 +50,9 @@ public class Game extends ApplicationAdapter {
 		elapsedTime += Gdx.graphics.getDeltaTime();
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
-		batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), teste.x, teste.y);
+		player.render(teste);
+		//batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), teste.x, teste.y);
 		batch.end();
-
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && teste.x > 128) teste.x -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && teste.x < 512) teste.x += 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && teste.y > 0) teste.y -= 200 * Gdx.graphics.getDeltaTime();
-		if(Gdx.input.isKeyPressed(Input.Keys.UP) && teste.y < 1024) teste.y += 200 * Gdx.graphics.getDeltaTime();
 	}
 	
 	@Override
