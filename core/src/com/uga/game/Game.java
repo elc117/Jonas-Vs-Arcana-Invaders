@@ -12,6 +12,8 @@ public class Game extends ApplicationAdapter {
 	Texture img;
 	private Rectangle teste;
 	Player player = new Player();
+	Scenario scenario = new Scenario();
+	Scenario scenario2 = new Scenario();
 
 
 	
@@ -25,8 +27,10 @@ public class Game extends ApplicationAdapter {
 		teste.y = 20;
 		teste.width = 64;
 		teste.height = 64;
-
-
+		scenario.setScenario();
+		scenario2.setScenario();
+		scenario.setLimit(1152);
+		scenario2.setLimit(0);
 	}
 
 	@Override
@@ -34,6 +38,14 @@ public class Game extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		player.render(teste, batch);
+
+		scenario.render(batch);
+		scenario2.render(batch);
+		/*if(scenario.getLimit() == 0){
+			scenario.setLimit(1152);
+		}else if (scenario2.getLimit() == 1152){
+			//arrumar essa logica
+		}*/
 		batch.end();
 	}
 	
