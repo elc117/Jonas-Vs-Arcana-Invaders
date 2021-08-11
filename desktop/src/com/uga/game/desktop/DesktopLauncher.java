@@ -8,5 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new Game(), config);
+		config.title = "Jonas vs Arcana Invaders";
+		config.width = 640;
+		config.height = 1152;
 	}
 }
