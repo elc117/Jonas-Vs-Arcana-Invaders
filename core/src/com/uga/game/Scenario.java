@@ -8,16 +8,17 @@ public class Scenario {
     private float limit;
 
     public void setScenario(){
-        texture = new Texture("Jonas-Sprite-Sheet.png");
+
+        texture = new Texture("Avenida-export.png");
     }
 
-    public void render(Batch batch){
-        batch.draw(texture,0,limit);
-        limit--;
+    public void render(Batch batch) {
+        batch.draw(texture,128,limit);
+        limit-=2;
     }
 
-    public void setLimit(int x){
-        this.limit = x;
+    public void setLimit(int y) {
+        this.limit = y;
     }
 
     public float getLimit() {
