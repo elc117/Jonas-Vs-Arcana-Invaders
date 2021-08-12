@@ -8,9 +8,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Player implements Entity{
+public class Player extends Entity{
+    public static final int height = 128;
+    public static final int width = 128;
+    public static final int speed = 200;
+    public static final String spritesheet = "Jonas-Spritesheet.png";
     Texture texture;
     private Rectangle position;
+
 
     TextureRegion[] animationFrames;
     Animation animation;
@@ -24,19 +29,9 @@ public class Player implements Entity{
         return position.y;
     }
 
-    @Override
-    public void setPosition(float x, float y){
-        position = new Rectangle();
 
-        position.x = x;
-        position.y = y;
-        position.width = 64;
-        position.height = 64;
-    }
-
-    @Override
     public void setAnimation(){
-        texture = new Texture("Jonas-Spritesheet.png");
+        texture = new Texture(spritesheet);
         TextureRegion[][] tmpFrames = TextureRegion.split(texture,128,128);
 
         int index = 0;
@@ -51,16 +46,16 @@ public class Player implements Entity{
         animation = new Animation(1f/6f,animationFrames);
     }
 
-    @Override
+
     public void render(SpriteBatch batch){
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && position.x > 128) position.x -= 200 * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && position.x < 512) position.x += 200 * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && position.y > 0) position.y -= 200 * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.UP) && position.y < 1024) position.y += 200 * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && super.position.x > Player.width) super.position.x -= Player.speed * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && super.position.x < Game.width - Player.width) super.position.x += Player.speed * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && super.position.y > 0) super.position.y -= Player.speed * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.UP) && super.position.y < (Game.height - Player.height*2)) super.position.y += Player.speed * Gdx.graphics.getDeltaTime();
 
 
-        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), position.x, position.y);
+        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
     }
 }

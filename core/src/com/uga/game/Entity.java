@@ -1,11 +1,16 @@
 package com.uga.game;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public interface Entity {
-    public void setPosition(float x, float y);
-    public void setAnimation();
+public abstract class Entity {
+    protected Rectangle position;
 
-    public void render(SpriteBatch batch);
+    public void setPosition(float x, float y) {
+        position = new Rectangle();
+
+        position.x = x;
+        position.y = y;
+        position.width = 64;
+        position.height = 64;
+    }
 }

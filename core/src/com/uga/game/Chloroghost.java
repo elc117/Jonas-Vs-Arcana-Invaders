@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Chloroghost implements Entity{
+public class Chloroghost extends Entity{
     Texture texture;
     private Rectangle position;
 
@@ -15,17 +15,7 @@ public class Chloroghost implements Entity{
     Animation animation;
     float elapsedTime;
 
-    @Override
-    public void setPosition(float x, float y) {
-        position = new Rectangle();
 
-        position.x = x;
-        position.y = y;
-        position.width = 64;
-        position.height = 64;
-    }
-
-    @Override
     public void setAnimation() {
         texture = new Texture("Chloroghost-Spritesheet.png");
         TextureRegion[][] tmpFrames = TextureRegion.split(texture,128,128);
@@ -42,7 +32,7 @@ public class Chloroghost implements Entity{
         animation = new Animation(1f/3f,animationFrames);
     }
 
-    @Override
+
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 

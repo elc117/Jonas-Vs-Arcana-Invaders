@@ -11,6 +11,8 @@ import java.util.List;
 
 
 public class Game extends ApplicationAdapter {
+	public static final int height = 1152;
+	public static final int width = 640;
 	SpriteBatch batch;
 
 	List<Bullet> bulletsOnScreen = new ArrayList<>();
@@ -45,7 +47,7 @@ public class Game extends ApplicationAdapter {
 
 		scenario.setScenario();
 		scenario2.setScenario();
-		scenario.setLimit(1152);
+		scenario.setLimit(Game.height);
 		scenario2.setLimit(0);
 
 		ui.setBackground();
@@ -62,14 +64,14 @@ public class Game extends ApplicationAdapter {
 
 
 		if(scenario.getLimit() == 0){
-			scenario2.setLimit(1152);
+			scenario2.setLimit(Game.height);
 		} else if (scenario2.getLimit() == -2){
-			scenario.setLimit(1150);
+			scenario.setLimit(Game.height - 2);
 		}
 
 		enemy.render(batch);
 		enemy2.render(batch);
-		enemy3.render(batch);
+		//enemy3.render(batch);
 
 
 
