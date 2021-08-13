@@ -85,12 +85,11 @@ public class Game extends ApplicationAdapter {
 		long time = System.currentTimeMillis();
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && time > lastShot + bulletCoolDown){
 			Bullet bullet = new Bullet();
-			bullet.setPosition(player.getx(), player.gety());
+			bullet.setPosition(player.getPosition().x, player.getPosition().y);
 			bullet.setAnimation();
 			bulletsOnScreen.add(bullet);
 			lastShot = time;
 		}
-
 
 		for (Bullet bullet : bulletsOnScreen){
 			bullet.render(batch);

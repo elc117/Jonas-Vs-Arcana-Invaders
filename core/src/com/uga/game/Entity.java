@@ -5,9 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
-    protected Rectangle position;
+    protected Vector2 position;
     protected Texture texture;
     protected TextureRegion[] animationFrames;
     protected Animation animation;
@@ -15,20 +16,13 @@ public abstract class Entity {
     protected int frames;
 
     public void setPosition(float x, float y) {
-        position = new Rectangle();
-
+        position = new Vector2();
         position.x = x;
         position.y = y;
-        position.width = 64;
-        position.height = 64;
-    } //talvez tirar isso daqui, so tem em player, n sei se vai ter nas outras classes filhas
-
-    public float getx(){
-        return position.x;
     }
 
-    public float gety(){
-        return position.y;
+    public Vector2 getPosition(){
+        return position;
     }
 
     public void setAnimation(){
