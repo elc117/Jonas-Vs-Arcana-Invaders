@@ -8,36 +8,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Bullet extends Entity {
-    Texture texture;
-    private Rectangle position;
 
-    TextureRegion[] animationFrames;
-    Animation animation;
     float elapsedTime;
 
-
-
-    public void setAnimation() {
-        texture = new Texture("Bullet-Spritesheet.png");
-        TextureRegion[][] tmpFrames = TextureRegion.split(texture,128,128);
-
-        int index = 0;
-        int frames = 3;
-
-        animationFrames = new TextureRegion[frames];
-
-        for (int i = 0; i < frames; i++){
-            animationFrames[index++] = tmpFrames[0][i];
-        }
-
-        animation = new Animation(1f/3f,animationFrames);
+    public Bullet(){
+        super.spritesheet = "Bullet-Spritesheet.png";
+        super.frames = 3;
     }
 
-
+    @Override
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        if (super.position.y <= 1160){
+        if (super.position.y <= 1160){//fazer variavel de tamanho pra esse bicho
             batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
             super.position.y += 6;
         }

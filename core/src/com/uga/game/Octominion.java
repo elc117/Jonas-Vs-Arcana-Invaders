@@ -8,31 +8,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Octominion extends Entity{
-    Texture texture;
-
-    TextureRegion[] animationFrames;
-    Animation animation;
     float elapsedTime;
 
-
-
-    public void setAnimation() {
-        texture = new Texture("Octominion-Spritesheet.png");
-        TextureRegion[][] tmpFrames = TextureRegion.split(texture,128,128);
-
-        int index = 0;
-        int frames = 8;
-
-        animationFrames = new TextureRegion[frames];
-
-        for (int i = 0; i < frames; i++){
-            animationFrames[index++] = tmpFrames[0][i];
-        }
-
-        animation = new Animation(1f/8f,animationFrames);
+    public Octominion(){
+        super.spritesheet = "Octominion-Spritesheet.png";
+        super.frames = 8;
     }
 
 
+
+    @Override
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 

@@ -1,6 +1,5 @@
 package com.uga.game;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -12,39 +11,15 @@ public class Player extends Entity{
     public static final int height = 128;
     public static final int width = 128;
     public static final int speed = 200;
-    public static final String spritesheet = "Jonas-Spritesheet.png";
-    Texture texture;
-    private Rectangle position;
-
-
-    TextureRegion[] animationFrames;
-    Animation animation;
     float elapsedTime;
 
-    public float getx(){
-        return position.x;
-    }
-
-    public float gety(){
-        return position.y;
+    public Player(){
+        super.frames = 6;
+        super.spritesheet = "Jonas-Spritesheet.png";
     }
 
 
-    public void setAnimation(){
-        texture = new Texture(spritesheet);
-        TextureRegion[][] tmpFrames = TextureRegion.split(texture,128,128);
 
-        int index = 0;
-        int frames = 6;
-
-        animationFrames = new TextureRegion[frames];
-
-        for (int i = 0; i < frames; i++){
-            animationFrames[index++] = tmpFrames[0][i];
-        }
-
-        animation = new Animation(1f/6f,animationFrames);
-    }
 
 
     public void render(SpriteBatch batch){

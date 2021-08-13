@@ -62,19 +62,26 @@ public class Game extends ApplicationAdapter {
 		scenario.render(batch);
 		scenario2.render(batch);
 
+		enemy.render(batch);
+		enemy2.render(batch);
+		enemy3.render(batch);
 
+		this.checkScenario();
+		this.checkBullet();
+
+		player.render(batch);
+		batch.end();
+	}
+
+	private void checkScenario(){
 		if(scenario.getLimit() == 0){
 			scenario2.setLimit(Game.height);
 		} else if (scenario2.getLimit() == -2){
 			scenario.setLimit(Game.height - 2);
 		}
+	}
 
-		enemy.render(batch);
-		enemy2.render(batch);
-		//enemy3.render(batch);
-
-
-
+	private void checkBullet(){
 		long time = System.currentTimeMillis();
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && time > lastShot + bulletCoolDown){
 			Bullet bullet = new Bullet();
@@ -88,10 +95,8 @@ public class Game extends ApplicationAdapter {
 		for (Bullet bullet : bulletsOnScreen){
 			bullet.render(batch);
 		}
-
-		player.render(batch);
-		batch.end();
 	}
+
 	
 	@Override
 	public void dispose () {
