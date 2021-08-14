@@ -1,19 +1,28 @@
 package com.uga.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class GameScreen extends ScreenAdapter {
+    JonasVsArcanaInvaders game;
+    public GameScreen(JonasVsArcanaInvaders game) {
+        this.game = game;
+        this.create();
+    }
 
-public class OldGame extends ApplicationAdapter {
-    /*public static final int height = 1152;
+    private void create(){
+        this.scenario1();
+    }
+
+    public static final int height = 1152;
     public static final int width = 640;
-    SpriteBatch batch;
 
     List<Bullet> bulletsOnScreen = new ArrayList<>();
     long lastShot = 0;
@@ -28,13 +37,6 @@ public class OldGame extends ApplicationAdapter {
     UI ui = new UI();
 
 
-    @Override
-    public void create () {
-        batch = new SpriteBatch();
-
-        this.scenario1();
-
-    }
 
     public void scenario1(){
         player.setPosition(512, 200);
@@ -51,7 +53,7 @@ public class OldGame extends ApplicationAdapter {
 
         scenario.setScenario();
         scenario2.setScenario();
-        scenario.setLimit(Game.height);
+        scenario.setLimit(GameScreen.height);
         scenario2.setLimit(0);
 
         ui.setBackground();
@@ -59,30 +61,30 @@ public class OldGame extends ApplicationAdapter {
 
 
     @Override
-    public void render () {
+    public void render (float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        batch.begin();
+        game.batch.begin();
 
-        ui.render(batch);
-        scenario.render(batch);
-        scenario2.render(batch);
+        ui.render(game.batch);
+        scenario.render(game.batch);
+        scenario2.render(game.batch);
 
-        enemy.render(batch);
-        enemy2.render(batch);
-        enemy3.render(batch);
+        enemy.render(game.batch);
+        enemy2.render(game.batch);
+        enemy3.render(game.batch);
 
         this.checkScenario();
         this.checkBullet();
 
-        player.render(batch);
-        batch.end();
+        player.render(game.batch);
+        game.batch.end();
     }
 
     private void checkScenario(){
         if(scenario.getLimit() == 0){
-            scenario2.setLimit(Game.height);
+            scenario2.setLimit(GameScreen.height);
         } else if (scenario2.getLimit() == -2){
-            scenario.setLimit(Game.height - 2);
+            scenario.setLimit(GameScreen.height - 2);
         }
     }
 
@@ -97,13 +99,13 @@ public class OldGame extends ApplicationAdapter {
         }
 
         for (Bullet bullet : bulletsOnScreen){
-            bullet.render(batch);
+            bullet.render(game.batch);
         }
     }
 
 
     @Override
     public void dispose () {
-        batch.dispose();
-    }*/
+        game.batch.dispose();
+    }
 }

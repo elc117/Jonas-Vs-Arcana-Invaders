@@ -2,6 +2,7 @@ package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -16,9 +17,15 @@ public class TitleScreen extends ScreenAdapter {
 
     @Override
     public void show(){
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            
-        }
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean keyDown(int keyCode) {
+                if (keyCode == Input.Keys.SPACE) {
+                    game.setScreen(new GameScreen(game));
+                }
+                return true;
+            }
+        });
     }
 
     @Override
