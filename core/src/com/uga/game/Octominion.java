@@ -1,12 +1,9 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class Octominion extends Entity{
     }
 
     @Override
-    public void verifyShot(List<Bullet> bulletsOnScreen){
+    public void verifyShot(List<Projectile> projectilesOnScreen){
         Gdx.app.log("#INFO", "Boa sorte orientando isso Augusto xD.");
     }
 }

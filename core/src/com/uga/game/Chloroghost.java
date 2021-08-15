@@ -1,19 +1,16 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.List;
 
 public class Chloroghost extends Entity{
     float elapsedTime;
     long lastShot = 0;
-    long bulletCoolDown = 1500;
+    long projectileCoolDown = 1500;
 
     public Chloroghost(){
         super.frames = 3;
@@ -34,14 +31,14 @@ public class Chloroghost extends Entity{
     }
 
     @Override
-    public void verifyShot(List<Bullet> bulletsOnScreen){
+    public void verifyShot(List<Projectile> projectilesOnScreen){
         long time = System.currentTimeMillis();
-        if(time > lastShot + bulletCoolDown){
-            EnemyBullet enemyBullet = new EnemyBullet();
-            enemyBullet.setPosition(position.x, position.y);
-            enemyBullet.setAnimation();
+        if(time > lastShot + projectileCoolDown){
+            EnemyProjectile enemyprojectile = new EnemyProjectile();
+            enemyprojectile.setPosition(position.x, position.y);
+            enemyprojectile.setAnimation();
             lastShot = time;
-            bulletsOnScreen.add(enemyBullet);
+            projectilesOnScreen.add(enemyprojectile);
         }
     }
 }

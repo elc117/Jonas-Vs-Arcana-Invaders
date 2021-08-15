@@ -5,10 +5,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class JonasVsArcanaInvaders extends Game {
-    public static final int height = 1152;
-    public static final int width = 640;
+    private static final int height = 1152;
+    private static final int width = 640;
     Texture texture;
     SpriteBatch batch;
+
+    public static int getHeight() {
+        return height;
+    }
+
+    public static int getWidth(){
+        return width;
+    }
 
     @Override
     public void create() {
