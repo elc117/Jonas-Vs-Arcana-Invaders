@@ -3,14 +3,13 @@ package com.uga.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 
-public class EnemyBullet extends Bullet {
+public class AllyBullet extends Bullet {
     // Preciso fazer funcionar depois
     float elapsedTime;
 
-    public EnemyBullet(){
-        super.spritesheet = "EnemyBullet-Spritesheet.png";
+    public AllyBullet(){
+        super.spritesheet = "Bullet-Spritesheet.png";
     }
 
     @Override
@@ -19,9 +18,9 @@ public class EnemyBullet extends Bullet {
 
         enemyHitbox.set(position.x, position.y, 64, 64);
 
-        if (super.position.y >= 0){
+        if (super.position.y <= 1160){
             batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.position.y -= 6;
+            super.position.y += 6;
         }
     }
 }

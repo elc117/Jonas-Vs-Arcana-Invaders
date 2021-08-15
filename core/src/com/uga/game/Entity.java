@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.List;
+
 public abstract class Entity {
     protected Vector2 position;
     protected Texture texture;
@@ -14,6 +16,8 @@ public abstract class Entity {
     protected Animation animation;
     protected String spritesheet;
     protected int frames;
+    protected Rectangle allyHitbox;
+    protected Rectangle enemyHitbox;
 
     public void setPosition(float x, float y) {
         position = new Vector2();
@@ -42,4 +46,5 @@ public abstract class Entity {
     }
 
     public abstract void render(SpriteBatch batch);
+    public abstract void verifyShot(List<Bullet> bulletsOnScreen);
 }
