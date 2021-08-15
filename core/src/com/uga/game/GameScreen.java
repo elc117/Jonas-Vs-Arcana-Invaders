@@ -21,7 +21,8 @@ public class GameScreen extends ScreenAdapter {
     public static final int width = 640;
 
     List<Entity> enemiesOnScreen = new ArrayList<>();
-    List<Projectile> projectilesOnScreen = new ArrayList<>();
+    List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
+    List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
 
     Player player = new Player();
     Scenario scenario = new Scenario();
@@ -52,9 +53,9 @@ public class GameScreen extends ScreenAdapter {
         scenario.render(game.batch);
         scenario2.render(game.batch);
 
-        EnemySpawner.spawn(enemiesOnScreen, game, player, projectilesOnScreen);
+        EnemySpawner.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
         ScenarioController.checkScenario(scenario, scenario2);
-        ProjectileController.checkProjectiles(player, projectilesOnScreen);
+        ProjectileController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 
         player.render(game.batch);
         game.batch.end();

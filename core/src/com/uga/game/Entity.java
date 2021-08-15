@@ -15,8 +15,7 @@ public abstract class Entity extends AnimatedCollider{
         super.frames = 6;
     }
 
-    protected Rectangle allyHitbox;
     protected Rectangle enemyHitbox;
     public abstract void render(SpriteBatch batch);
-    public abstract void verifyShot(List<Projectile> projectilesOnScreen);
+    public abstract void verifyShot(List<EnemyProjectile> enemyProjectilesOnScreen);
 }

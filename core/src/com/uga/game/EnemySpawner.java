@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EnemySpawner {
 
-    public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<Projectile> projectilesOnScreen){ //arrumar esse crime depois
+    public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){ //arrumar esse crime depois
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
             Octominion octominion = new Octominion();
             octominion.setPosition(512, 1660);
@@ -24,11 +24,17 @@ public class EnemySpawner {
 
         for (Entity enemy : enemiesOnScreen){
             enemy.render(game.batch);
-            enemy.verifyShot(projectilesOnScreen);
-            if(player.allyHitbox.overlaps(enemy.enemyHitbox)) Gdx.app.log("#INFO", "My message.");
-            /*for (Projectile projectile : projectilesOnScreen){
-                if(enemy.enemyHitbox.overlaps(projectile.allyHitbox)) enemiesOnScreen.remove(enemy);
-            }*/
+            enemy.verifyShot(enemyProjectilesOnScreen);
+            if(player.allyHitbox.overlaps(enemy.enemyHitbox)){
+                Gdx.app.log("#INFO", "Inimigo matou Player");
+            }
+            for (AllyProjectile projectile : allyProjectilesOnScreen){
+                if(enemy.enemyHitbox.overlaps(projectile.allyHitbox)) {
+                    Gdx.app.log("#INFO", "Player matou Inimigo");
+                    //enemiesOnScreen.remove(enemy);
+                    //allyProjectilesOnScreen.remove(projectile);
+                }
+            }
         }
     }
 }

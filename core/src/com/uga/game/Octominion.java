@@ -31,7 +31,7 @@ public class Octominion extends Entity{
     }
 
     @Override
-    public void verifyShot(List<Projectile> projectilesOnScreen){
-        Gdx.app.log("#INFO", "Boa sorte orientando isso Augusto xD.");
+    public void verifyShot(List<EnemyProjectile> projectilesOnScreen){
+        //Precisamos dar um jeito de não usar isso aqui
     }
 }

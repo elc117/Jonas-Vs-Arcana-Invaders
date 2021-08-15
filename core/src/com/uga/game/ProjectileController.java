@@ -5,13 +5,17 @@ import com.badlogic.gdx.Gdx;
 import java.util.List;
 
 public class ProjectileController {
-    public static void checkProjectiles(Player player, List<Projectile> projectilesOnScreen){
-        player.verifyShot(projectilesOnScreen);
-        for (Projectile projectile : projectilesOnScreen){
-            //projectile.render(game.batch); //Quebra o jogo!!
-            if(player.allyHitbox.overlaps(projectile.enemyHitbox)) Gdx.app.log("#INFO", "My message.");
+    public static void checkProjectiles(JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
+        player.verifyShot(allyProjectilesOnScreen);
+        for (AllyProjectile allyProjectile : allyProjectilesOnScreen){
+            allyProjectile.render(game.batch);
         }
-        //Isso aqui ta errado, chama projectile e nao enemy ou ally projectile. O projectile.render() vai ser
-        //abstrato, entao tem que chamar o da classe filha.
+        for (EnemyProjectile enemyProjectile : enemyProjectilesOnScreen){
+            enemyProjectile.render(game.batch);
+            if(player.allyHitbox.overlaps(enemyProjectile.enemyHitbox)){
+                Gdx.app.log("#INFO", "Inimigo matou Player");
+                //enemyProjectilesOnScreen.remove(enemyProjectile);
+            }
+        }
     }
 }

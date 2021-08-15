@@ -8,19 +8,21 @@ import com.badlogic.gdx.math.Rectangle;
 
 import java.util.List;
 
-public class Player extends Entity{
+public class Player extends AnimatedCollider{
     private static final int height = 128;
     private static final int width = 128;
     private static final int speed = 200;
     float elapsedTime;
-    long lastShot = 0;
+    long lastShot = System.currentTimeMillis();
     long projectileCoolDown = 300;
+    protected Rectangle allyHitbox;
+
 
     public Player(){
         super.spritesheet = "Jonas-Spritesheet.png";
-        super.allyHitbox = new Rectangle();
+        allyHitbox = new Rectangle();
+        super.frames = 6;
     }
-
 
     public void render(SpriteBatch batch){
         elapsedTime += Gdx.graphics.getDeltaTime();
@@ -37,15 +39,14 @@ public class Player extends Entity{
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
     }
 
-    @Override
-    public void verifyShot(List<Projectile> projectilesOnScreenOnScreen){
+    public void verifyShot(List<AllyProjectile> allyProjectilesOnScreen){
         long time = System.currentTimeMillis();
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && time > this.lastShot + this.projectileCoolDown){
-            Projectile projectile = new AllyProjectile();
-            projectile.setPosition(this.position.x, this.position.y);
-            projectile.setAnimation();
+            AllyProjectile allyProjectile = new AllyProjectile();
+            allyProjectile.setPosition(this.position.x, this.position.y);
+            allyProjectile.setAnimation();
             this.lastShot = time;
-            projectilesOnScreenOnScreen.add(projectile);
+            allyProjectilesOnScreen.add(allyProjectile);
         }
     }
 }
