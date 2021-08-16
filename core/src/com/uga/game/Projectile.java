@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Projectile extends AnimatedCollider{
-    protected static final int hitbox = 64;
+    protected static final int hitbox = 32;
     protected Rectangle allyHitbox;
     protected Rectangle enemyHitbox;
 

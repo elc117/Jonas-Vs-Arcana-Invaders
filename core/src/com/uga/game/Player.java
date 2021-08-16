@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.List;
 public class Player extends AnimatedCollider{
     private static final int height = 128;
     private static final int width = 128;
-    private static final int speed = 200;
+    private static final int speed = 300;
     float elapsedTime;
     long lastShot = System.currentTimeMillis();
     long projectileCoolDown = 300;
     protected Rectangle allyHitbox;
-
+    private int score = 0;
 
     public Player(){
         super.spritesheet = "Jonas-Spritesheet.png";
@@ -24,11 +25,18 @@ public class Player extends AnimatedCollider{
         super.frames = 6;
     }
 
+    public void setScore(int points){
+        this.score += points;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
     public void render(SpriteBatch batch){
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         allyHitbox.set(super.position.x, super.position.y, 64, 64);
-
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && super.position.x > Player.width) super.position.x -= Player.speed * Gdx.graphics.getDeltaTime();
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && super.position.x < JonasVsArcanaInvaders.getWidth() - Player.width) super.position.x += Player.speed * Gdx.graphics.getDeltaTime();

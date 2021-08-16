@@ -24,10 +24,10 @@ public class Octominion extends Entity{
 
         enemyHitbox.set(position.x, position.y, 64, 64);
 
-        if (super.position.y >= -64){
-            batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.position.y -= 3;
-        }
+
+        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.position.y -= 3;
+
     }
 
     @Override

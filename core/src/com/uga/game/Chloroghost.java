@@ -10,7 +10,7 @@ import java.util.List;
 public class Chloroghost extends Entity{
     float elapsedTime;
     long lastShot = 0;
-    long projectileCoolDown = 1500;
+    long projectileCoolDown = 4000;
 
     public Chloroghost(){
         super.frames = 3;
@@ -24,10 +24,10 @@ public class Chloroghost extends Entity{
 
         enemyHitbox.set(position.x, position.y, 64, 64);
 
-        if (super.position.y >= -64){
-            batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.position.y -= 3;
-        }
+
+        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.position.y -= 3;
+
     }
 
     @Override

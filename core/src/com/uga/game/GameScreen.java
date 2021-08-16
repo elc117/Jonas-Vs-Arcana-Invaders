@@ -49,11 +49,11 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
 
-        ui.render(game.batch);
+        ui.render(game.batch, player);
         scenario.render(game.batch);
         scenario2.render(game.batch);
 
-        EnemySpawner.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+        EnemyController.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
         ScenarioController.checkScenario(scenario, scenario2);
         ProjectileController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 

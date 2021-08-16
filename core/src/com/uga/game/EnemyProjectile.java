@@ -20,9 +20,7 @@ public class EnemyProjectile extends Projectile {
 
         enemyHitbox.set(position.x, position.y, super.hitbox, super.hitbox);
 
-        if (super.position.y >= 0){
-            batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.position.y -= 6;
-        }
+        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.position.y -= 6;
     }
 }

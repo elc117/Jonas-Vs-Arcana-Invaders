@@ -20,9 +20,7 @@ public class AllyProjectile extends Projectile {
 
         allyHitbox.set(position.x, position.y, hitbox, hitbox);
 
-        if (super.position.y <= 1160){
-            batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.position.y += 6;
-        }
+        batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.position.y += 6;
     }
 }
