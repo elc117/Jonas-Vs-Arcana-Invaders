@@ -22,17 +22,16 @@ public class EnemySpawner {
             enemiesOnScreen.add(chloroghost);
         }
 
-        for (Entity enemy : enemiesOnScreen){
-            enemy.render(game.batch);
-            enemy.verifyShot(enemyProjectilesOnScreen);
-            if(player.allyHitbox.overlaps(enemy.enemyHitbox)){
+        for (int i = 0; i < enemiesOnScreen.size(); i++){
+            enemiesOnScreen.get(i).render(game.batch);
+            enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
+            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
                 Gdx.app.log("#INFO", "Inimigo matou Player");
             }
-            for (AllyProjectile projectile : allyProjectilesOnScreen){
-                if(enemy.enemyHitbox.overlaps(projectile.allyHitbox)) {
-                    Gdx.app.log("#INFO", "Player matou Inimigo");
-                    //enemiesOnScreen.remove(enemy);
-                    //allyProjectilesOnScreen.remove(projectile);
+            for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
+                if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
+                    enemiesOnScreen.remove(i);
+                    allyProjectilesOnScreen.remove(j);
                 }
             }
         }
