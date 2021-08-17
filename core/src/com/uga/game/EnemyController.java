@@ -33,6 +33,7 @@ public class EnemyController {
             enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
             if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
                 Gdx.app.log("#INFO", "Inimigo matou Player");
+                game.setScreen(new TitleScreen(game));
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
                 if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {

@@ -17,6 +17,7 @@ public class ProjectileController {
             enemyProjectilesOnScreen.get(i).render(game.batch);
             if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).enemyHitbox)){
                 Gdx.app.log("#INFO", "Inimigo matou Player");
+                game.setScreen(new TitleScreen(game));
                 enemyProjectilesOnScreen.remove(i);
             } else if (enemyProjectilesOnScreen.get(i).getPosition().y < -64){
                 enemyProjectilesOnScreen.remove(i);

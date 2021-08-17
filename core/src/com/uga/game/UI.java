@@ -17,6 +17,6 @@ public class UI {
         playerScore = String.valueOf(player.getScore());
 
         batch.draw(texture,0,0);
-        font.draw(batch, playerScore, 20, 612);
+        font.draw(batch, playerScore, 20, 484);
     }
 }
