@@ -10,6 +10,6 @@ public class DesktopLauncher {
 		new LwjglApplication(new JonasVsArcanaInvaders(), config);
 		config.title = "Jonas vs Arcana Invaders";
 		config.width = 640;
-		config.height = 1024;
+		config.height = 896;
 	}
 }

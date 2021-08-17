@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class AllyProjectile extends Projectile {
-    // Preciso fazer funcionar depois
     float elapsedTime;
 
     public AllyProjectile(){

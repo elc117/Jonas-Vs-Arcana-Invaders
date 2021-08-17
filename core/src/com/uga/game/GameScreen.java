@@ -17,8 +17,6 @@ public class GameScreen extends ScreenAdapter {
         this.scenario1();
     }
 
-    public static final int height = 1152;
-    public static final int width = 640;
 
     List<Entity> enemiesOnScreen = new ArrayList<>();
     List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
@@ -32,12 +30,12 @@ public class GameScreen extends ScreenAdapter {
 
 
     public void scenario1(){
-        player.setPosition(512, 200);
+        player.setPosition(game.getWidth() / 2, 200);
         player.setAnimation();
 
         scenario.setScenario();
         scenario2.setScenario();
-        scenario.setLimit(GameScreen.height);
+        scenario.setLimit(game.getHeight());
         scenario2.setLimit(0);
 
         ui.setBackground();
@@ -54,10 +52,10 @@ public class GameScreen extends ScreenAdapter {
         scenario2.render(game.batch);
 
         EnemyController.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
-        ScenarioController.checkScenario(scenario, scenario2);
+        ScenarioController.checkScenario(game, scenario, scenario2);
         ProjectileController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 
-        player.render(game.batch);
+        player.render(game);
         game.batch.end();
 
     }

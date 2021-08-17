@@ -9,7 +9,7 @@ public class ProjectileController {
         player.verifyShot(allyProjectilesOnScreen);
         for (int i = 0; i < allyProjectilesOnScreen.size(); i++){
             allyProjectilesOnScreen.get(i).render(game.batch);
-            if(allyProjectilesOnScreen.get(i).getPosition().y > 1160){
+            if(allyProjectilesOnScreen.get(i).getPosition().y > game.getHeight() + 64){
                 allyProjectilesOnScreen.remove(i);
             }
         }

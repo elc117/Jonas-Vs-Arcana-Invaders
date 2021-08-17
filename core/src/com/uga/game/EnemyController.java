@@ -1,8 +1,7 @@
 package com.uga.game;
 
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 
 import java.util.List;
 
@@ -17,12 +16,12 @@ public class EnemyController {
             int enemyX = (int) ((Math.random() * 384) + 128);
             if (enemyType == 0){
                 Octominion octominion = new Octominion();
-                octominion.setPosition(enemyX, 1500);
+                octominion.setPosition(enemyX, game.getHeight() + 128);
                 octominion.setAnimation();
                 enemiesOnScreen.add(octominion);
             } else {
                 Chloroghost chloroghost = new Chloroghost();
-                chloroghost.setPosition(enemyX, 1500);
+                chloroghost.setPosition(enemyX, game.getHeight() + 64);
                 chloroghost.setAnimation();
                 enemiesOnScreen.add(chloroghost);
             }
@@ -40,6 +39,7 @@ public class EnemyController {
                     enemiesOnScreen.remove(i);
                     allyProjectilesOnScreen.remove(j);
                     player.setScore(10);
+                    break;
                 } else if(enemiesOnScreen.get(i).getPosition().y <= -64){
                     enemiesOnScreen.remove(i);
                 }

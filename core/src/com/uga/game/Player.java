@@ -33,18 +33,26 @@ public class Player extends AnimatedCollider{
         return score;
     }
 
-    public void render(SpriteBatch batch){
+    public void render(JonasVsArcanaInvaders game){
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         allyHitbox.set(super.position.x, super.position.y, 64, 64);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && super.position.x > Player.width) super.position.x -= Player.speed * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && super.position.x < JonasVsArcanaInvaders.getWidth() - Player.width) super.position.x += Player.speed * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && super.position.y > 0) super.position.y -= Player.speed * Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.UP) && super.position.y < (JonasVsArcanaInvaders.getHeight() - Player.height*2)) super.position.y += Player.speed * Gdx.graphics.getDeltaTime();
+        if((Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) && super.position.x > Player.width) {
+            super.position.x -= Player.speed * Gdx.graphics.getDeltaTime();
+        }
+        if((Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) && super.position.x < game.getWidth() - Player.width) {
+            super.position.x += Player.speed * Gdx.graphics.getDeltaTime();
+        }
+        if((Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) && super.position.y > 0) {
+            super.position.y -= Player.speed * Gdx.graphics.getDeltaTime();
+        }
+        if((Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) && super.position.y < (game.getHeight() - Player.height*2)) {
+            super.position.y += Player.speed * Gdx.graphics.getDeltaTime();
+        }
 
 
-        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
     }
 
     public void verifyShot(List<AllyProjectile> allyProjectilesOnScreen){
