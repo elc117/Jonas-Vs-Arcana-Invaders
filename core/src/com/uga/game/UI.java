@@ -13,10 +13,10 @@ public class UI {
         texture = new Texture("UI-export.png");
     }
 
-    public void render(Batch batch, Player player) {
+    public void render(JonasVsArcanaInvaders game, Player player) {
         playerScore = String.valueOf(player.getScore());
 
-        batch.draw(texture,0,0);
-        font.draw(batch, playerScore, 20, 484);
+        game.batch.draw(texture,0,0);
+        font.draw(game.batch, playerScore, 20, game.getHeight() - 540);
     }
 }

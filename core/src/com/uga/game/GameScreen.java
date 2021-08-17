@@ -47,7 +47,7 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
 
-        ui.render(game.batch, player);
+        ui.render(game, player);
         scenario.render(game.batch);
         scenario2.render(game.batch);
 
