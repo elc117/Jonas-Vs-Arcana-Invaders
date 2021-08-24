@@ -43,7 +43,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void checkGameOver(Player player){
         if(player.getHearts() <= 0){
-            game.setScreen(new GameOver(game));
+            game.setScreen(new GameOver(game, 0));
         }
     }
 
