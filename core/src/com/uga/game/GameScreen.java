@@ -41,9 +41,16 @@ public class GameScreen extends ScreenAdapter {
         ui.setBackground();
     }
 
+    private void checkGameOver(Player player){
+        if(player.getHearts() <= 0){
+            game.setScreen(new GameOver(game));
+        }
+    }
+
 
     @Override
     public void render (float delta) {
+        this.checkGameOver(player);
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
 
@@ -52,8 +59,9 @@ public class GameScreen extends ScreenAdapter {
         scenario2.render(game.batch);
 
         EnemyController.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
-        ScenarioController.checkScenario(game, scenario, scenario2);
-        ProjectileController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+        EnemyController.checkOverlaps(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+        LogicController.checkScenario(game, scenario, scenario2);
+        LogicController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 
         player.render(game);
         game.batch.end();

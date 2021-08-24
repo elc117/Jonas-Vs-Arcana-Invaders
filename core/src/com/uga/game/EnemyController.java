@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EnemyController {
     static long lastEnemy = System.currentTimeMillis();
-    static long enemyCoolDown = 2000;
+    static final long enemyCoolDown = 2000;
 
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){ //arrumar esse crime depois
         long time = System.currentTimeMillis();
@@ -26,13 +26,15 @@ public class EnemyController {
                 enemiesOnScreen.add(chloroghost);
             }
         }
+    }
 
+    public static void checkOverlaps(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
         for (int i = 0; i < enemiesOnScreen.size(); i++){
             enemiesOnScreen.get(i).render(game.batch);
             enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
-            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
+            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox) && 1 == 1){
                 Gdx.app.log("#INFO", "Inimigo matou Player");
-                game.setScreen(new TitleScreen(game));
+                player.setDamage(1);
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
                 if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {

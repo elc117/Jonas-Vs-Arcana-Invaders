@@ -18,6 +18,7 @@ public class Player extends AnimatedCollider{
     long projectileCoolDown = 300;
     protected Rectangle allyHitbox;
     private int score = 0;
+    private int hearts = 10;
 
     public Player(){
         super.spritesheet = "Jonas-Spritesheet.png";
@@ -31,6 +32,14 @@ public class Player extends AnimatedCollider{
 
     public int getScore(){
         return score;
+    }
+
+    public int getHearts(){
+        return this.hearts;
+    }
+
+    public void setDamage(int damage){
+        this.hearts -= damage;
     }
 
     public void render(JonasVsArcanaInvaders game){
