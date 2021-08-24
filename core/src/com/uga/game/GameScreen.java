@@ -68,8 +68,6 @@ public class GameScreen extends ScreenAdapter {
 
     }
 
-
-
     @Override
     public void dispose () {
         game.batch.dispose();
