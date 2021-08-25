@@ -30,11 +30,11 @@ public class GameScreen extends ScreenAdapter {
 
 
     public void scenario1(){
-        player.setPosition(game.getWidth() / 2, 200);
+        player.setPosition(game.getWidth()/2f, 200);
         player.setAnimation();
 
-        scenario.setScenario();
-        scenario2.setScenario();
+        scenario.setScenario(1);
+        scenario2.setScenario(1);
         scenario.setLimit(game.getHeight());
         scenario2.setLimit(0);
 
@@ -58,7 +58,7 @@ public class GameScreen extends ScreenAdapter {
         scenario.render(game.batch);
         scenario2.render(game.batch);
 
-        EnemyController.spawn(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+        EnemyController.spawn(enemiesOnScreen, game);
         EnemyController.checkOverlaps(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
         LogicController.checkScenario(game, scenario, scenario2);
         LogicController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);

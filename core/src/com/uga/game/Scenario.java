@@ -7,9 +7,21 @@ public class Scenario {
     private Texture texture;
     private float limit;
 
-    public void setScenario(){
-
-        texture = new Texture("Avenida-export.png");
+    public void setScenario(int level){
+        switch (level){
+            case 2:
+                texture = new Texture("Scenarios/CT-export.png");
+                break;
+            case 3:
+                texture = new Texture("Scenarios/Biblioteca-export.png");
+                break;
+            case 4:
+                texture = new Texture("Scenarios/RU-export.png");
+                break;
+            default:
+                texture = new Texture("Scenarios/Avenida-export.png");
+                break;
+        }
     }
 
     public void render(Batch batch) {

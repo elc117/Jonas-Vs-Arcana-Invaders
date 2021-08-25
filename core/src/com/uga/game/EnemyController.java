@@ -7,9 +7,9 @@ import java.util.List;
 
 public class EnemyController {
     static long lastEnemy = System.currentTimeMillis();
-    static final long enemyCoolDown = 2000;
+    static final long enemyCoolDown = 1000;
 
-    public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){ //arrumar esse crime depois
+    public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
         if (enemiesOnScreen.size() < 5 && time > lastEnemy + enemyCoolDown){
             int enemyType = (int) ((Math.random() * 10) % 2);
@@ -25,6 +25,7 @@ public class EnemyController {
                 chloroghost.setAnimation();
                 enemiesOnScreen.add(chloroghost);
             }
+            lastEnemy = time;
         }
     }
 
@@ -32,9 +33,15 @@ public class EnemyController {
         for (int i = 0; i < enemiesOnScreen.size(); i++){
             enemiesOnScreen.get(i).render(game.batch);
             enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
-            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox) && 1 == 1){
+            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
                 Gdx.app.log("#INFO", "Inimigo matou Player");
+                enemiesOnScreen.remove(i);
                 player.setDamage(1);
+                continue;
+            }
+            if(enemiesOnScreen.get(i).getPosition().y <= -64){
+                enemiesOnScreen.remove(i);
+                continue;
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
                 if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
@@ -42,8 +49,6 @@ public class EnemyController {
                     allyProjectilesOnScreen.remove(j);
                     player.setScore(10);
                     break;
-                } else if(enemiesOnScreen.get(i).getPosition().y <= -64){
-                    enemiesOnScreen.remove(i);
                 }
             }
         }
