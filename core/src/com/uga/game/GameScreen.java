@@ -38,12 +38,12 @@ public class GameScreen extends ScreenAdapter {
         scenario.setLimit(game.getHeight());
         scenario2.setLimit(0);
 
-        ui.setBackground();
+        ui.setUI();
     }
 
     private void checkGameOver(Player player){
         if(player.getHearts() <= 0){
-            game.setScreen(new GameOver(game, 0));
+            game.setScreen(new GameOver(game, 0, player));
         }
     }
 

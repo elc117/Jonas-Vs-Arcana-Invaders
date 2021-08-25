@@ -18,7 +18,7 @@ public class Player extends AnimatedCollider{
     long projectileCoolDown = 300;
     protected Rectangle allyHitbox;
     private int score = 0;
-    private int hearts = 10;
+    private int hearts = 5;
 
     public Player(){
         super.spritesheet = "Jonas-Spritesheet.png";
