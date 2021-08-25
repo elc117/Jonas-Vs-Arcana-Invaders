@@ -10,12 +10,13 @@ import java.util.List;
 public class Chloroghost extends Entity{
     float elapsedTime;
     long lastShot = 0;
-    long projectileCoolDown = 4000;
+    long projectileCoolDown = 2000;
 
     public Chloroghost(){
         super.frames = 3;
         super.spritesheet = "Chloroghost-Spritesheet.png";
         super.enemyHitbox = new Rectangle();
+        super.lifes = 2;
     }
 
 
@@ -26,7 +27,7 @@ public class Chloroghost extends Entity{
 
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.position.y -= 3;
+        super.setMovement(2, 3);
 
     }
 

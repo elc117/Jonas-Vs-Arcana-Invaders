@@ -13,6 +13,7 @@ public class AnimatedCollider {
     protected String spritesheet;
     protected int frames;
     protected Animation animation;
+    int direction;
 
     public void setPosition(float x, float y) {
         position = new Vector2();
@@ -37,5 +38,16 @@ public class AnimatedCollider {
         }
 
         animation = new Animation(1f/fframes,animationFrames);
+    }
+
+    protected void setMovement(int x, int y){
+        position.y -= y;
+        if (position.x >= JonasVsArcanaInvaders.width - 64){
+            direction = -1;
+        }
+        else if (position.x <= 64){
+            direction = 1;
+        }
+        position.x += x * direction;
     }
 }

@@ -7,7 +7,8 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.List;
 
 public abstract class Entity extends AnimatedCollider{
-
+    int lifes;
+    int damage;
     public Entity(){
         super.frames = 6;
     }
@@ -15,4 +16,5 @@ public abstract class Entity extends AnimatedCollider{
     protected Rectangle enemyHitbox;
     public abstract void render(SpriteBatch batch);
     public abstract void verifyShot(List<EnemyProjectile> enemyProjectilesOnScreen);
+
 }

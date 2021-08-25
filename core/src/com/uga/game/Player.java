@@ -12,10 +12,12 @@ import java.util.List;
 public class Player extends AnimatedCollider{
     private static final int height = 128;
     private static final int width = 128;
-    private static final int speed = 300;
+    private static int speed = 300;
     float elapsedTime;
     long lastShot = System.currentTimeMillis();
-    long projectileCoolDown = 300;
+    long buffTime;
+    long projectileCoolDown = 400;
+    long currentBuffTime;
     protected Rectangle allyHitbox;
     private int score = 0;
     private int hearts = 5;
@@ -41,6 +43,19 @@ public class Player extends AnimatedCollider{
     public void setDamage(int damage){
         this.hearts -= damage;
     }
+
+    public void setBuff(int buff){
+        if (buff == 1){
+            speed = 450;
+            projectileCoolDown = 1;
+            currentBuffTime = System.currentTimeMillis();
+        }
+        if (buff == 2){ //carro desativa o buff
+            speed = 300;
+            projectileCoolDown = 400;
+        }
+    }
+
 
     public void render(JonasVsArcanaInvaders game){
         elapsedTime += Gdx.graphics.getDeltaTime();

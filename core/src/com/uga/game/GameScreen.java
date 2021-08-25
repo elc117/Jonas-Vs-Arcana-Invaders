@@ -21,6 +21,7 @@ public class GameScreen extends ScreenAdapter {
     List<Entity> enemiesOnScreen = new ArrayList<>();
     List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
     List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
+    List<Obstacle> obstaclesOnScreen = new ArrayList<>();
 
     Player player = new Player();
     Scenario scenario = new Scenario();
@@ -54,9 +55,11 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
 
-        ui.render(game, player);
         scenario.render(game.batch);
         scenario2.render(game.batch);
+
+        ObstacleController.spawn(obstaclesOnScreen, game);
+        ObstacleController.checkOverlaps(obstaclesOnScreen,game,player);
 
         EnemyController.spawn(enemiesOnScreen, game);
         EnemyController.checkOverlaps(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
@@ -64,6 +67,7 @@ public class GameScreen extends ScreenAdapter {
         LogicController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 
         player.render(game);
+        ui.render(game, player);
         game.batch.end();
 
     }

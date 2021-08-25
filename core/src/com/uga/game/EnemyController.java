@@ -12,14 +12,14 @@ public class EnemyController {
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
         if (enemiesOnScreen.size() < 5 && time > lastEnemy + enemyCoolDown){
-            int enemyType = (int) ((Math.random() * 10) % 2);
+            int enemyType = (int) ((Math.random() * 10) % 3);
             int enemyX = (int) ((Math.random() * 384) + 128);
             if (enemyType == 0){
                 Octominion octominion = new Octominion();
                 octominion.setPosition(enemyX, game.getHeight() + 128);
                 octominion.setAnimation();
                 enemiesOnScreen.add(octominion);
-            } else {
+            } else if (enemyType == 1){
                 Chloroghost chloroghost = new Chloroghost();
                 chloroghost.setPosition(enemyX, game.getHeight() + 64);
                 chloroghost.setAnimation();

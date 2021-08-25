@@ -1,14 +1,19 @@
 package com.uga.game;
 
-public class Obstacle extends AnimatedCollider{
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+
+import com.badlogic.gdx.math.Rectangle;
+
+public abstract class Obstacle extends AnimatedCollider{
+    protected Rectangle enemyHitbox;
+    protected int damage;
+    protected int buff = 0;
     public Obstacle(){
         super.frames = 2;
     }
-
-    public void collide(Player player){
-        player.setDamage(4);
-    }
+    public abstract void render(SpriteBatch batch);
 
 
 }

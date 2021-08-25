@@ -14,6 +14,14 @@ public class Octominion extends Entity{
         super.spritesheet = "Octominion-Spritesheet.png";
         super.frames = 8;
         super.enemyHitbox = new Rectangle();
+        super.lifes = 4;
+        if (Math.random() > 0.5){
+            super.direction = 1;
+        }
+        else{
+            super.direction = -1;
+        }
+        super.damage = 2;
     }
 
 
@@ -26,9 +34,9 @@ public class Octominion extends Entity{
 
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.position.y -= 3;
-
+        super.setMovement(2, 5);
     }
+
 
     @Override
     public void verifyShot(List<EnemyProjectile> projectilesOnScreen){
