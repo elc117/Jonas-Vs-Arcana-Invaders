@@ -12,7 +12,7 @@ public class Heart extends Obstacle{
         super.spritesheet = "Health-Sheet.png";
         super.frames = 3;
         super.enemyHitbox = new Rectangle();
-        super.damage = -2;
+        super.damage = -1;
     }
 
     float elapsedTime;

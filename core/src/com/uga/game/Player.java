@@ -15,9 +15,9 @@ public class Player extends AnimatedCollider{
     private static int speed = 300;
     float elapsedTime;
     long lastShot = System.currentTimeMillis();
-    long buffTime;
+    long buffTime = 5000;
     long projectileCoolDown = 400;
-    long currentBuffTime;
+    long currentBuffTime = 0;
     protected Rectangle allyHitbox;
     private int score = 0;
     private int hearts = 5;
@@ -47,7 +47,7 @@ public class Player extends AnimatedCollider{
     public void setBuff(int buff){
         if (buff == 1){
             speed = 450;
-            projectileCoolDown = 1;
+            projectileCoolDown = 100;
             currentBuffTime = System.currentTimeMillis();
         }
         if (buff == 2){ //carro desativa o buff
@@ -56,6 +56,17 @@ public class Player extends AnimatedCollider{
         }
     }
 
+    // Provavelmente tem uma forma mais inteligente de fazer isso
+    public int getBuffDuration(){
+        long time = System.currentTimeMillis();
+        float remainingTime = buffTime + (currentBuffTime - time);
+        if (remainingTime > 0){
+            int remainingPercentage = (int) (100 * remainingTime / buffTime);
+            return remainingPercentage;
+        } else {
+            return 0;
+        }
+    }
 
     public void render(JonasVsArcanaInvaders game){
         elapsedTime += Gdx.graphics.getDeltaTime();
@@ -87,6 +98,11 @@ public class Player extends AnimatedCollider{
             allyProjectile.setAnimation();
             this.lastShot = time;
             allyProjectilesOnScreen.add(allyProjectile);
+        }
+
+
+        if(time > currentBuffTime + buffTime){
+            this.setBuff(2);
         }
     }
 }
