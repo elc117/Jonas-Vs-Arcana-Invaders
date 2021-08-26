@@ -10,7 +10,8 @@ import java.util.List;
 public class Car extends Obstacle{
 
     public Car(){
-        super.spritesheet = "Car-Export.png";
+        super.spritesheet = "Obstacles/Car-Export.png";
+        super.spriteSize = 192;
         super.frames = 1;
         super.enemyHitbox = new Rectangle();
         super.damage = 1;
@@ -25,7 +26,7 @@ public class Car extends Obstacle{
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        enemyHitbox.set(position.x, position.y, 128, 192);
+        enemyHitbox.set(position.x, position.y, 128, 160);
 
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);

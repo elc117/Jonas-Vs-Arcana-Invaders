@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class AnimatedCollider {
-    protected static final int spriteSize = 128;
+    protected int spriteSize = 128;
     protected Vector2 position;
     protected Texture texture;
     protected TextureRegion[] animationFrames;

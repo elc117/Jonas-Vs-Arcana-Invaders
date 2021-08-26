@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EnemyController {
     static long lastEnemy = System.currentTimeMillis();
-    static final long enemyCoolDown = 1000;
+    static final long enemyCoolDown = 500;
 
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();

@@ -26,10 +26,9 @@ public class UI {
     public void render(JonasVsArcanaInvaders game, Player player) {
         playerScore = String.valueOf(player.getScore());
 
-
         game.batch.draw(background,0,0);
         game.batch.draw(playerHearts[0][player.getHearts()],0,0);
-        game.batch.draw(powerUpIndicator[0][player.getBuffDuration()*4/100], 0, game.getHeight()/5f );
+        game.batch.draw(powerUpIndicator[0][player.getBuffDuration()*5/100], 0, game.getHeight()/5f );
 
         font.draw(game.batch, playerScore, 20, game.getHeight() - 540);
     }

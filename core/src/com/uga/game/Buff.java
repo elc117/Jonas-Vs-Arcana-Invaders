@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Buff extends Obstacle{
 
     public Buff(){
-        super.spritesheet = "Buff-Sheet.png";
+        super.spritesheet = "Obstacles/Buff-Sheet.png";
         super.frames = 3;
         super.enemyHitbox = new Rectangle();
         super.damage = 0;

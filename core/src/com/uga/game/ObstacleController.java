@@ -6,18 +6,18 @@ import java.util.List;
 
 public class ObstacleController {
     static long lastObstacle = System.currentTimeMillis();
-    static final long obstacleCoolDown = 1000;
+    static final long obstacleCoolDown = 2000;
 
     public static void spawn(List<Obstacle> obstaclesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
-        if (obstaclesOnScreen.size() < 5 && time > lastObstacle + obstacleCoolDown){
+        if (obstaclesOnScreen.size() < 3 && time > lastObstacle + obstacleCoolDown){
             int obstacleType = (int) ((Math.random() * 10) % 3);
             int obstacleX = (int) ((Math.random() * 384) + 128);
             if (obstacleType == 0){
-                //Car car = new Car();
-                //car.setPosition(obstacleX, game.getHeight() + 128);
-                //car.setAnimation();
-                //obstaclesOnScreen.add(car);
+                Car car = new Car();
+                car.setPosition(obstacleX, game.getHeight() + 128);
+                car.setAnimation();
+                obstaclesOnScreen.add(car);
             } else if (obstacleType == 1){
                 Heart heart = new Heart();
                 heart.setPosition(obstacleX, game.getHeight() + 128);
@@ -46,7 +46,7 @@ public class ObstacleController {
                 obstacleOnScreen.remove(i);
                 continue;
             }
-            if(obstacleOnScreen.get(i).getPosition().y <= -64){
+            if(obstacleOnScreen.get(i).getPosition().y <= -192){
                 obstacleOnScreen.remove(i);
                 continue;
             }

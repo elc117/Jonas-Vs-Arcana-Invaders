@@ -10,7 +10,7 @@ import java.util.List;
 public class Chloroghost extends Entity{
     float elapsedTime;
     long lastShot = 0;
-    long projectileCoolDown = 2000;
+    long projectileCoolDown = 4000;
 
     public Chloroghost(){
         super.frames = 3;

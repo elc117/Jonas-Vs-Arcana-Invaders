@@ -15,8 +15,8 @@ public class Player extends AnimatedCollider{
     private static int speed = 300;
     float elapsedTime;
     long lastShot = System.currentTimeMillis();
-    long buffTime = 5000;
-    long projectileCoolDown = 400;
+    long buffTime = 3000;
+    long projectileCoolDown = 300;
     long currentBuffTime = 0;
     protected Rectangle allyHitbox;
     private int score = 0;
@@ -47,12 +47,12 @@ public class Player extends AnimatedCollider{
     public void setBuff(int buff){
         if (buff == 1){
             speed = 450;
-            projectileCoolDown = 100;
+            projectileCoolDown = 150;
             currentBuffTime = System.currentTimeMillis();
         }
         if (buff == 2){ //carro desativa o buff
             speed = 300;
-            projectileCoolDown = 400;
+            projectileCoolDown = 300;
         }
     }
 

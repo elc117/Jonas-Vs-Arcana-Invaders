@@ -9,7 +9,7 @@ import java.util.List;
 public class Heart extends Obstacle{
 
     public Heart(){
-        super.spritesheet = "Health-Sheet.png";
+        super.spritesheet = "Obstacles/Health-Sheet.png";
         super.frames = 3;
         super.enemyHitbox = new Rectangle();
         super.damage = -1;
