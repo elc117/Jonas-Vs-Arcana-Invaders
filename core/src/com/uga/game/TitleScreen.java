@@ -21,7 +21,7 @@ public class TitleScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    game.setScreen(new GameScreen(game));
+                    game.setScreen(new FirstHistory(game));
                 }
                 return true;
             }
