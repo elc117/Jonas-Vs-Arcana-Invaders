@@ -5,21 +5,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
-public class EnemyProjectile extends Projectile {
+import java.util.List;
+
+public class FoodTable extends Obstacle{
+
+    public FoodTable(){
+        super.spritesheet = "Obstacles/FoodTable.png";
+        super.spriteSize = 192;
+        super.frames = 1;
+        super.enemyHitbox = new Rectangle();
+        super.damage = 1;
+        super.buff = 2;
+    }
+
     float elapsedTime;
 
-    public EnemyProjectile(){
-        super.enemyHitbox = new Rectangle();
-        super.spritesheet = "EnemyProjectile-Spritesheet.png";
-    }
+
 
     @Override
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        enemyHitbox.set(position.x + super.hitbox, position.y + super.hitbox, super.hitbox, super.hitbox);
+        enemyHitbox.set(position.x, position.y, 128, 160);
+
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.position.y -= 6;
+        super.setMovement(0, 2);
     }
+
+
 }

@@ -28,14 +28,14 @@ public class GameScreen extends ScreenAdapter {
     Scenario scenario2 = new Scenario();
     UI ui = new UI();
 
-
+    int level = 3;
 
     public void scenario1(){
         player.setPosition(game.getWidth()/2f, 200);
         player.setAnimation();
 
-        scenario.setScenario(1);
-        scenario2.setScenario(1);
+        scenario.setScenario(level);
+        scenario2.setScenario(level);
         scenario.setLimit(game.getHeight());
         scenario2.setLimit(0);
 
@@ -58,7 +58,7 @@ public class GameScreen extends ScreenAdapter {
         scenario.render(game.batch);
         scenario2.render(game.batch);
 
-        ObstacleController.spawn(obstaclesOnScreen, game);
+        ObstacleController.spawn(obstaclesOnScreen, game, level);
         ObstacleController.checkOverlaps(obstaclesOnScreen,game,player);
 
         EnemyController.spawn(enemiesOnScreen, game);

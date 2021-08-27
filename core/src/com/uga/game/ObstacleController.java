@@ -1,6 +1,7 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
 import java.util.List;
 
@@ -8,16 +9,30 @@ public class ObstacleController {
     static long lastObstacle = System.currentTimeMillis();
     static final long obstacleCoolDown = 2000;
 
-    public static void spawn(List<Obstacle> obstaclesOnScreen, JonasVsArcanaInvaders game){
+    public static void spawn(List<Obstacle> obstaclesOnScreen, JonasVsArcanaInvaders game, int level){
         long time = System.currentTimeMillis();
         if (obstaclesOnScreen.size() < 3 && time > lastObstacle + obstacleCoolDown){
             int obstacleType = (int) ((Math.random() * 10) % 3);
             int obstacleX = (int) ((Math.random() * 384) + 128);
             if (obstacleType == 0){
-                Car car = new Car();
-                car.setPosition(obstacleX, game.getHeight() + 128);
-                car.setAnimation();
-                obstaclesOnScreen.add(car);
+                Obstacle obstacle;
+                switch (level) {
+                    case 2:
+                        obstacle = new ComputerTable();
+                        break;
+                    case 3:
+                        obstacle = new Bookshelf();
+                        break;
+                    case 4:
+                        obstacle = new FoodTable();
+                        break;
+                    default:
+                        obstacle = new Car();
+                        break;
+                }
+                obstacle.setPosition(obstacleX, game.getHeight() + 128);
+                obstacle.setAnimation();
+                obstaclesOnScreen.add(obstacle);
             } else if (obstacleType == 1){
                 Heart heart = new Heart();
                 heart.setPosition(obstacleX, game.getHeight() + 128);
