@@ -5,17 +5,24 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirstHistory extends ScreenAdapter{
     JonasVsArcanaInvaders game;
     private BitmapFont font = new BitmapFont();
     long fontLastWrite = System.currentTimeMillis();
     int writeControl = 0;
+    int skipLine = 0;
+    int arrayPosition = 0;
     int drawx = 100, drawy = 100;
     Texture texture;
     String history = "Tudo aconteceu em um dia que parecia normal. Jonas estava indo para a universidade quando avistou vários alunos correndo para fora do campus. Confuso, Jonas percebeu um velho senhor ajoelhado em meio à multidão...";
+    List<String> receiveHistory = new ArrayList<>();
     public FirstHistory(JonasVsArcanaInvaders game){
         this.game = game;
         texture = new Texture("LevelImages.png");
+        receiveHistory.add("");
     }
 
 
@@ -47,8 +54,17 @@ public class FirstHistory extends ScreenAdapter{
         game.batch.begin();
         //game.batch.draw(texture,0,0);
         if (this.verifyDraw()) {
-            font.draw(game.batch, Character.toString(history.charAt(writeControl)), drawx + writeControl*3, drawy);
+            receiveHistory.set(arrayPosition, receiveHistory.get(arrayPosition) + history.charAt(writeControl));
             writeControl++;
+            skipLine++;
+            if (skipLine >= 40){
+                skipLine = 0;
+                receiveHistory.add("");
+                arrayPosition++;
+            }
+        }
+        for(int i = 0; i <= arrayPosition; i++) {
+            font.draw(game.batch, receiveHistory.get(i), drawx, drawy - i*20);
         }
         game.batch.draw(texture,128,384);
         game.batch.end();
