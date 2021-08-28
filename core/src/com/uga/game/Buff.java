@@ -20,12 +20,12 @@ public class Buff extends Obstacle{
 
 
     @Override
-    public void render(SpriteBatch batch) {
+    public void render(JonasVsArcanaInvaders game) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         enemyHitbox.set(position.x, position.y, 32, 32);
 
-        batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.position.y -= 2;
     }
 

@@ -40,9 +40,9 @@ public class AnimatedCollider {
         animation = new Animation(1f/fframes,animationFrames);
     }
 
-    protected void setMovement(int x, int y){
+    protected void setMovement(JonasVsArcanaInvaders game, int x, int y){
         position.y -= y;
-        if (position.x >= JonasVsArcanaInvaders.width - 64){
+        if (position.x >= game.getWidth() - 64){
             direction = -1;
         }
         else if (position.x <= 64){

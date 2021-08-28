@@ -1,13 +1,16 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Sound;
 
 import java.util.List;
 
 public class ObstacleController {
     static long lastObstacle = System.currentTimeMillis();
     static final long obstacleCoolDown = 2000;
+
+    private static Sound obstacleSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/obstacle.wav"));
+    private static Sound powerUpSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/powerUp.wav"));
 
     public static void spawn(List<Obstacle> obstaclesOnScreen, JonasVsArcanaInvaders game, int level){
         long time = System.currentTimeMillis();
@@ -21,10 +24,10 @@ public class ObstacleController {
                         obstacle = new ComputerTable();
                         break;
                     case 3:
-                        obstacle = new Bookshelf();
+                        obstacle = new FoodTable();
                         break;
                     case 4:
-                        obstacle = new FoodTable();
+                        obstacle = new Bookshelf();
                         break;
                     default:
                         obstacle = new Car();
@@ -51,11 +54,16 @@ public class ObstacleController {
 
     public static void checkOverlaps(List<Obstacle> obstacleOnScreen, JonasVsArcanaInvaders game, Player player){
         for (int i = 0; i < obstacleOnScreen.size(); i++){
-            obstacleOnScreen.get(i).render(game.batch);
+            obstacleOnScreen.get(i).render(game);
             if(player.allyHitbox.overlaps(obstacleOnScreen.get(i).enemyHitbox)){
                 // If para solucionar bug do coracao fechar o game, podemos mudar de local dps
                 if(player.getHearts() - obstacleOnScreen.get(i).damage <= 5) {
-                    player.setDamage(obstacleOnScreen.get(i).damage);
+                    if(obstacleOnScreen.get(i).damage > 0){
+                        obstacleSound.play();
+                    } else {
+                        powerUpSound.play();
+                    }
+                    player.setHearts(-1 * obstacleOnScreen.get(i).damage);
                 }
                 player.setBuff(obstacleOnScreen.get(i).buff);
                 obstacleOnScreen.remove(i);

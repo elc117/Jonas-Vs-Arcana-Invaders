@@ -1,16 +1,20 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class AllyProjectile extends Projectile {
     float elapsedTime;
+    private Sound sound;
 
     public AllyProjectile(){
         super.allyHitbox = new Rectangle();
         super.spritesheet = "Projectile-Spritesheet.png";
+        sound = Gdx.audio.newSound(Gdx.files.internal("Sounds/projectile.wav"));
+        sound.play();
     }
 
     @Override

@@ -1,13 +1,18 @@
 package com.uga.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class JonasVsArcanaInvaders extends Game {
-    public static final int height = 896;
-    public static final int width = 640;
-    SpriteBatch batch;
+    private int height = 896;
+    private int width = 640;
+    private int level = 1;
+    private Player player = new Player();
+    public SpriteBatch batch;
 
     public int getHeight() {
         return height;
@@ -16,6 +21,15 @@ public class JonasVsArcanaInvaders extends Game {
     public int getWidth(){
         return width;
     }
+
+    public int getLevel() {return level; }
+
+    public void changeLevel() {
+        this.level++;
+        this.setScreen(new GameScreen(this));
+    }
+
+    public Player getPlayer() {return player;}
 
     @Override
     public void create() {

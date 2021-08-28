@@ -13,10 +13,10 @@ public class Scenario {
                 texture = new Texture("Scenarios/CT-export.png");
                 break;
             case 3:
-                texture = new Texture("Scenarios/Biblioteca-export.png");
+                texture = new Texture("Scenarios/RU-export.png");
                 break;
             case 4:
-                texture = new Texture("Scenarios/RU-export.png");
+                texture = new Texture("Scenarios/Biblioteca-export.png");
                 break;
             default:
                 texture = new Texture("Scenarios/Avenida-export.png");

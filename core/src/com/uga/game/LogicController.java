@@ -1,8 +1,14 @@
 package com.uga.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 import java.util.List;
 
 public class LogicController {
+
+    private static Sound playerHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/playerHurt.wav"));
+
     public static void checkScenario(JonasVsArcanaInvaders game, Scenario scenario, Scenario scenario2){
         if(scenario.getLimit() == 0){
             scenario2.setLimit(game.getHeight());
@@ -22,7 +28,8 @@ public class LogicController {
         for (int i = 0; i < enemyProjectilesOnScreen.size(); i++){
             enemyProjectilesOnScreen.get(i).render(game.batch);
             if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).enemyHitbox)){
-                player.setDamage(1);
+                playerHurt.play();
+                player.setHearts(-1);
                 enemyProjectilesOnScreen.remove(i);
             } else if (enemyProjectilesOnScreen.get(i).getPosition().y < -64){
                 enemyProjectilesOnScreen.remove(i);

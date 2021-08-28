@@ -27,14 +27,14 @@ public class Octominion extends Entity{
 
 
     @Override
-    public void render(SpriteBatch batch) {
+    public void render(JonasVsArcanaInvaders game) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         enemyHitbox.set(position.x, position.y, 64, 64);
 
 
-        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.setMovement(2, 5);
+        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.setMovement(game,2, 5);
     }
 
 

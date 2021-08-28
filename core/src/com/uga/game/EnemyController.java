@@ -2,12 +2,16 @@ package com.uga.game;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 
 import java.util.List;
 
 public class EnemyController {
     static long lastEnemy = System.currentTimeMillis();
     static final long enemyCoolDown = 500;
+
+    private static Sound playerHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/playerHurt.wav"));
+    private static Sound enemyHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemyHurt.wav"));
 
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
@@ -31,12 +35,12 @@ public class EnemyController {
 
     public static void checkOverlaps(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
         for (int i = 0; i < enemiesOnScreen.size(); i++){
-            enemiesOnScreen.get(i).render(game.batch);
+            enemiesOnScreen.get(i).render(game);
             enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
             if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
-                Gdx.app.log("#INFO", "Inimigo matou Player");
+                playerHurt.play();
                 enemiesOnScreen.remove(i);
-                player.setDamage(1);
+                player.setHearts(-1);
                 continue;
             }
             if(enemiesOnScreen.get(i).getPosition().y <= -64){
@@ -45,6 +49,7 @@ public class EnemyController {
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
                 if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
+                    enemyHurt.play();
                     enemiesOnScreen.remove(i);
                     allyProjectilesOnScreen.remove(j);
                     player.setScore(10);

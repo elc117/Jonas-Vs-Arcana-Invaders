@@ -2,9 +2,8 @@ package com.uga.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.List;
@@ -40,8 +39,8 @@ public class Player extends AnimatedCollider{
         return this.hearts;
     }
 
-    public void setDamage(int damage){
-        this.hearts -= damage;
+    public void setHearts(int health){
+        this.hearts += health;
     }
 
     public void setBuff(int buff){

@@ -20,14 +20,14 @@ public class Chloroghost extends Entity{
     }
 
 
-    public void render(SpriteBatch batch) {
+    public void render(JonasVsArcanaInvaders game) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         enemyHitbox.set(position.x, position.y, 64, 64);
 
 
-        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.setMovement(2, 3);
+        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.setMovement(game,2, 3);
 
     }
 

@@ -8,29 +8,30 @@ import java.util.List;
 
 public class GameScreen extends ScreenAdapter {
     JonasVsArcanaInvaders game;
+    Player player;
+    int level;
+
     public GameScreen(JonasVsArcanaInvaders game) {
         this.game = game;
+        this.player = game.getPlayer();
+        this.level = game.getLevel();
         this.create();
     }
 
     private void create(){
-        this.scenario1();
+        this.scenario();
     }
-
 
     List<Entity> enemiesOnScreen = new ArrayList<>();
     List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
     List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
     List<Obstacle> obstaclesOnScreen = new ArrayList<>();
 
-    Player player = new Player();
     Scenario scenario = new Scenario();
     Scenario scenario2 = new Scenario();
     UI ui = new UI();
 
-    int level = 3;
-
-    public void scenario1(){
+    public void scenario(){
         player.setPosition(game.getWidth()/2f, 200);
         player.setAnimation();
 
@@ -48,10 +49,16 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
+    private void checkNextLevel(Player player){
+        if(player.getScore() == 100 * game.getLevel()){
+            game.changeLevel();
+        }
+    }
 
     @Override
     public void render (float delta) {
         this.checkGameOver(player);
+        this.checkNextLevel(player);
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
 
@@ -69,7 +76,6 @@ public class GameScreen extends ScreenAdapter {
         player.render(game);
         ui.render(game, player);
         game.batch.end();
-
     }
 
     @Override

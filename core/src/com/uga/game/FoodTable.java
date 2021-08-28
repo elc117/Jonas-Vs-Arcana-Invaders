@@ -23,14 +23,14 @@ public class FoodTable extends Obstacle{
 
 
     @Override
-    public void render(SpriteBatch batch) {
+    public void render(JonasVsArcanaInvaders game) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         enemyHitbox.set(position.x, position.y, 128, 160);
 
 
-        batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.setMovement(0, 2);
+        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.setMovement(game,0, 2);
     }
 
 

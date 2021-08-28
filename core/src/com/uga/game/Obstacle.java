@@ -13,7 +13,7 @@ public abstract class Obstacle extends AnimatedCollider{
     public Obstacle(){
         super.frames = 2;
     }
-    public abstract void render(SpriteBatch batch);
+    public abstract void render(JonasVsArcanaInvaders game);
 
 
 }

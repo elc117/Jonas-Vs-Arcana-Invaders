@@ -28,6 +28,8 @@ public class GameOver extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
+                    game.getPlayer().setScore(-1 * game.getPlayer().getScore());
+                    game.getPlayer().setHearts(5);
                     game.setScreen(new GameScreen(game));
                 }
                 return true;

@@ -14,7 +14,7 @@ public abstract class Entity extends AnimatedCollider{
     }
 
     protected Rectangle enemyHitbox;
-    public abstract void render(SpriteBatch batch);
+    public abstract void render(JonasVsArcanaInvaders game);
     public abstract void verifyShot(List<EnemyProjectile> enemyProjectilesOnScreen);
 
 }
