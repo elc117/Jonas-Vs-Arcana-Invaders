@@ -77,7 +77,7 @@ public class FirstHistory extends ScreenAdapter{
         for(int i = 0; i <= arrayPosition; i++) {
             font.draw(game.batch, receiveHistory.get(i), drawx, drawy - i*32);
         }
-        game.batch.draw(levelImage[0][0],128,512);
+        game.batch.draw(levelImage[0][game.getLevel() - 1],128,512);
         game.batch.end();
     }
 
