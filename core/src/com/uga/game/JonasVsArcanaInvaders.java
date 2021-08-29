@@ -14,6 +14,13 @@ public class JonasVsArcanaInvaders extends Game {
     private Player player = new Player();
     public SpriteBatch batch;
 
+    // 0 = Não spawnado; 1 = Spawnado; 2 = Derrotado
+    private int bossStatus = 0;
+
+    public int getBossStatus()  { return bossStatus; }
+
+    public void changeBossStatus() {bossStatus++;}
+
     public int getHeight() {
         return height;
     }

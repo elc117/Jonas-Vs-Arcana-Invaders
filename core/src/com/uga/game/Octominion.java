@@ -12,16 +12,13 @@ public class Octominion extends Entity{
 
     public Octominion(){
         super.spritesheet = "Octominion-Spritesheet.png";
-        super.frames = 8;
         super.enemyHitbox = new Rectangle();
-        super.lifes = 4;
         if (Math.random() > 0.5){
             super.direction = 1;
         }
         else{
             super.direction = -1;
         }
-        super.damage = 2;
     }
 
 

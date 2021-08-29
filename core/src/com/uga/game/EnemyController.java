@@ -15,10 +15,16 @@ public class EnemyController {
 
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
-        if (enemiesOnScreen.size() < 5 + game.getLevel()*2 && time > lastEnemy + enemyCoolDown){
+        if (enemiesOnScreen.size() < 5 + game.getLevel() && time > lastEnemy + enemyCoolDown){
             int enemyType = (int) ((Math.random() * 10) % 3);
             int enemyX = (int) ((Math.random() * 384) + 128);
-            if (enemyType == 0){
+            if(game.getPlayer().getScore() == 200 * Math.pow(game.getLevel(),2) && game.getLevel() == 4 && game.getBossStatus() == 0){
+                Boss boss = new Boss();
+                boss.setPosition(enemyX, game.getHeight() + 128);
+                boss.setAnimation();
+                enemiesOnScreen.add(boss);
+                game.changeBossStatus();
+            }else if (enemyType == 0){
                 Octominion octominion = new Octominion();
                 octominion.setPosition(enemyX, game.getHeight() + 128);
                 octominion.setAnimation();
@@ -35,24 +41,33 @@ public class EnemyController {
 
     public static void checkOverlaps(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
         for (int i = 0; i < enemiesOnScreen.size(); i++){
-            enemiesOnScreen.get(i).render(game);
-            enemiesOnScreen.get(i).verifyShot(enemyProjectilesOnScreen);
-            if(player.allyHitbox.overlaps(enemiesOnScreen.get(i).enemyHitbox)){
+            Entity entity = enemiesOnScreen.get(i);
+            entity.render(game);
+            entity.verifyShot(enemyProjectilesOnScreen);
+            if(player.allyHitbox.overlaps(entity.enemyHitbox)){
                 playerHurt.play();
-                enemiesOnScreen.remove(i);
+                if (!(entity instanceof Boss)){enemiesOnScreen.remove(i);}
                 player.setHearts(-1);
                 continue;
             }
-            if(enemiesOnScreen.get(i).getPosition().y <= -64){
+            if(entity.getPosition().y <= -64){
                 enemiesOnScreen.remove(i);
                 continue;
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
-                if(enemiesOnScreen.get(i).enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
+                if(entity.enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
                     enemyHurt.play();
-                    enemiesOnScreen.remove(i);
+                    if (entity instanceof Boss){
+                        ((Boss) entity).changeHealthPoints();
+                        if(((Boss) entity).getHealthPoints() <= 0){
+                            enemiesOnScreen.remove(i);
+                            player.setScore(100);
+                        }
+                    } else {
+                        player.setScore(10);
+                        enemiesOnScreen.remove(i);
+                    }
                     allyProjectilesOnScreen.remove(j);
-                    player.setScore(10);
                     break;
                 }
             }

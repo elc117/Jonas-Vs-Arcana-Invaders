@@ -7,30 +7,45 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.List;
 
 public class Boss extends Entity{
-    private int lastTime;
     private float elapsedTime;
     private long lastShot = 0;
     private long projectileCoolDown = 4000;
     private int projectilesUsed = 0;
+    private int healthPoints = 15;
 
     public Boss(){
         super.spritesheet = "Boss-Spritesheet.png";
         super.enemyHitbox = new Rectangle();
+        if (Math.random() > 0.5){
+            super.direction = 1;
+        }
+        else{
+            super.direction = -1;
+        }
         super.spriteSize = 256;
-        super.lifes = 100;
     }
 
+    public void changeHealthPoints(){
+        this.healthPoints--;
+    }
 
+    public int getHealthPoints(){
+        return this.healthPoints;
+    }
 
     @Override
     public void render(JonasVsArcanaInvaders game) {
             elapsedTime += Gdx.graphics.getDeltaTime();
 
-            enemyHitbox.set(position.x, position.y, 128, 128);
+            super.enemyHitbox.set(position.x, position.y, 64, 64);
 
+            game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), position.x, position.y);
 
-            game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-            super.setMovement(game,5, 0);
+            if (position.y <= game.getHeight() - this.spriteSize){
+                super.setMovement(game,2, 0);
+            } else {
+                super.setMovement(game,2, 1);
+            }
     }
 
     @Override
@@ -46,7 +61,7 @@ public class Boss extends Entity{
                 projectileCoolDown = 100;
             }
             projectilesUsed++;
-            if (projectilesUsed == 10){
+            if (projectilesUsed == 3){
                 projectileCoolDown = 2000;
                 projectilesUsed = 0;
             }

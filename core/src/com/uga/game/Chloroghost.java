@@ -16,7 +16,6 @@ public class Chloroghost extends Entity{
         super.frames = 3;
         super.spritesheet = "Chloroghost-Spritesheet.png";
         super.enemyHitbox = new Rectangle();
-        super.lifes = 2;
     }
 
 

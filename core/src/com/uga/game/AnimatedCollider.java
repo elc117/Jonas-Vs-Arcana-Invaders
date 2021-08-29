@@ -42,7 +42,7 @@ public class AnimatedCollider {
 
     protected void setMovement(JonasVsArcanaInvaders game, int x, int y){
         position.y -= y;
-        if (position.x >= game.getWidth() - 64){
+        if (position.x >= game.getWidth() - spriteSize){
             direction = -1;
         }
         else if (position.x <= 64){

@@ -14,6 +14,8 @@ public class Player extends AnimatedCollider{
     private static int speed = 300;
     float elapsedTime;
     long lastShot = System.currentTimeMillis();
+    long lastDamage = 0;
+    long damageCoolDown = 100;
     long buffTime = 3000;
     long projectileCoolDown = 300;
     long currentBuffTime = 0;
@@ -40,7 +42,13 @@ public class Player extends AnimatedCollider{
     }
 
     public void setHearts(int health){
-        this.hearts += health;
+        long time = System.currentTimeMillis();
+        if (health >= 0){
+            this.hearts += health;
+        } else if(health < 0 && time > this.lastDamage + this.damageCoolDown){
+            this.hearts += health;
+            lastDamage = time;
+        }
     }
 
     public void setBuff(int buff){
