@@ -50,7 +50,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void checkNextLevel(Player player){
-        if(player.getScore() == 200 * Math.pow(game.getLevel(),2) && game.getBossStatus() != 1){
+        if(player.getScore() >= 200 * Math.pow(game.getLevel(),2) && (game.getBossStatus() == 2 || game.getLevel() < 4)){
             game.changeLevel();
         }
     }

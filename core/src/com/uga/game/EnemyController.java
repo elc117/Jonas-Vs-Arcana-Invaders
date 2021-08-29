@@ -18,12 +18,12 @@ public class EnemyController {
         if (enemiesOnScreen.size() < 5 + game.getLevel() && time > lastEnemy + enemyCoolDown){
             int enemyType = (int) ((Math.random() * 10) % 3);
             int enemyX = (int) ((Math.random() * 384) + 128);
-            if(game.getPlayer().getScore() == 200 * Math.pow(game.getLevel(),2) && game.getLevel() == 4 && game.getBossStatus() == 0){
+            if(game.getPlayer().getScore() >= 200 * Math.pow(game.getLevel(),2) && game.getLevel() == 4 && game.getBossStatus() == 0){
                 Boss boss = new Boss();
                 boss.setPosition(enemyX, game.getHeight() + 128);
                 boss.setAnimation();
                 enemiesOnScreen.add(boss);
-                game.changeBossStatus();
+                game.setBossStatus(1);
             }else if (enemyType == 0){
                 Octominion octominion = new Octominion();
                 octominion.setPosition(enemyX, game.getHeight() + 128);
@@ -62,9 +62,10 @@ public class EnemyController {
                         if(((Boss) entity).getHealthPoints() <= 0){
                             enemiesOnScreen.remove(i);
                             player.setScore(100);
+                            game.setBossStatus(2);
                         }
                     } else {
-                        player.setScore(10);
+                        player.setScore(100);
                         enemiesOnScreen.remove(i);
                     }
                     allyProjectilesOnScreen.remove(j);

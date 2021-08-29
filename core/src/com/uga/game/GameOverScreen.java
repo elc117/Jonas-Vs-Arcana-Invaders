@@ -26,7 +26,13 @@ public class GameOverScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    game.getPlayer().setScore(-1 * game.getPlayer().getScore());
+                    // Caso esteja no endless mode. A pontuação é zerada a cada morte
+                    if(game.getLevel() > 4){
+                        game.getPlayer().setScore(-1 * game.getPlayer().getScore());
+                    } else {
+                        // Caso o player morra fora do endlessmode, precisamos garantir que o boss seja "despawnado"
+                        game.setBossStatus(0);
+                    }
                     game.getPlayer().setHearts(5);
                     game.getPlayer().setBuff(2);
                     game.setScreen(new GameScreen(game));

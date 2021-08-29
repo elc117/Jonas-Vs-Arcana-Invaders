@@ -1,6 +1,7 @@
 package com.uga.game;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,9 +32,10 @@ public class LevelScreen extends ScreenAdapter{
     private String[] history = new String[5];
     private List<String> receiveHistory = new ArrayList<>();
 
+
     public LevelScreen(JonasVsArcanaInvaders game){
         this.history[0] = "Jonas estava indo para a universidade quando avistou vários alunos correndo para fora do campus. Confuso, Jonas percebeu um velho senhor caído em meio à multidão." +
-                "Jonas imediatamente foi ajudá-lo. O velho revelou ser um antigo sábio da dimensão de Arcana, invadida por monstros que desejavam instaurar a ignorância. Ele veio para nosso mundo tentar impedir que a Terra tivesse o mesmo destino..." +
+                "Jonas imediatamente foi ajudá-lo. O velho revelou ser um antigo sábio da dimensão de Arcana, invadida por monstros que desejavam instaurar a ignorância. Ele veio para nosso mundo tentar impedir que a Terra tivesse o mesmo destino...  " +
                 "Com um último sacrifício, o ancião transferiu para Jonas seu poder, a única fonte de poder capaz de destruir os monstros de Arcana. O conhecimento. Jonas, impelido por sua coragem e determinação, adentrou o campus, com o objetivo de expurgar os invasores.";
         this.history[1] = "Após abrir caminho para a evacuação do local, e aprender a controlar os poderes, Jonas ouviu gritos de socorro vindos do Centro de Tecnologia. Nosso herói não pensou duas vezes e adentrou o local...";
         this.history[2] = "Após resgatar os alunos presos no prédio, Jonas se lembrou de que não havia tomado café da manhã. Convenientemente, nosso herói se encontrava a poucos passos do Restaurante Universitário...";
@@ -70,11 +72,10 @@ public class LevelScreen extends ScreenAdapter{
     }
 
     private boolean verifyNullPointer(){
-        try {history[game.getLevel()-1].charAt(writeControl);}
-        catch (Exception e){
-            return false;
-        };
-        return true;
+        if (writeControl < history[game.getLevel()-1].length()){
+            return true;
+        }
+        return false;
     }
 
     private boolean verifyDraw(){

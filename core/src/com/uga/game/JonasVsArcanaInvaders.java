@@ -23,7 +23,7 @@ public class JonasVsArcanaInvaders extends Game {
 
     public int getBossStatus()  { return bossStatus; }
 
-    public void changeBossStatus() {bossStatus++;}
+    public void setBossStatus(int status) {bossStatus = status;}
 
     public int getHeight() {
         return height;
