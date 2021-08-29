@@ -11,7 +11,6 @@ public class AllyProjectile extends Projectile {
     private Sound sound;
 
     public AllyProjectile(){
-        super.allyHitbox = new Rectangle();
         super.spritesheet = "Projectile-Spritesheet.png";
         sound = Gdx.audio.newSound(Gdx.files.internal("Sounds/projectile.wav"));
         sound.play();
@@ -21,7 +20,7 @@ public class AllyProjectile extends Projectile {
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        allyHitbox.set(position.x, position.y, hitbox, hitbox);
+        hitbox.set(position.x, position.y, hitboxSize, hitboxSize);
 
         batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.position.x += (Math.random() - 0.5)*5;

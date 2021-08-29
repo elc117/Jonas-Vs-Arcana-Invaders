@@ -9,7 +9,7 @@ public class EnemyProjectile extends Projectile {
     float elapsedTime;
 
     public EnemyProjectile(){
-        super.enemyHitbox = new Rectangle();
+        super.hitbox = new Rectangle();
         super.spritesheet = "EnemyProjectile-Spritesheet.png";
     }
 
@@ -17,7 +17,7 @@ public class EnemyProjectile extends Projectile {
     public void render(SpriteBatch batch) {
         elapsedTime += Gdx.graphics.getDeltaTime();
 
-        enemyHitbox.set(position.x + super.hitbox, position.y + super.hitbox, super.hitbox, super.hitbox);
+        hitbox.set(position.x + super.hitboxSize, position.y + super.hitboxSize, super.hitboxSize, super.hitboxSize);
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.position.y -= 6;

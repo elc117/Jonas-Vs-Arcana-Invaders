@@ -10,23 +10,10 @@ public class Buff extends Obstacle{
     public Buff(){
         super.spritesheet = "Obstacles/Buff-Sheet.png";
         super.frames = 3;
-        super.enemyHitbox = new Rectangle();
+        super.hitbox = new Rectangle();
         super.damage = 0;
         super.buff = 1;
+        super.hitboxWidth = 32;
+        super.hitboxHeight = 32;
     }
-
-    float elapsedTime;
-
-
-
-    @Override
-    public void render(JonasVsArcanaInvaders game) {
-        elapsedTime += Gdx.graphics.getDeltaTime();
-
-        enemyHitbox.set(position.x, position.y, 32, 32);
-
-        game.batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.position.y -= 2;
-    }
-
 }

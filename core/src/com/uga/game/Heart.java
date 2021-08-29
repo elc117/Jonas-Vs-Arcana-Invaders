@@ -1,32 +1,16 @@
 package com.uga.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import java.util.List;
 
 public class Heart extends Obstacle{
 
     public Heart(){
         super.spritesheet = "Obstacles/Health-Sheet.png";
         super.frames = 3;
-        super.enemyHitbox = new Rectangle();
+        super.hitbox = new Rectangle();
         super.damage = -1;
-    }
-
-    float elapsedTime;
-
-
-
-    @Override
-    public void render(JonasVsArcanaInvaders game) {
-        elapsedTime += Gdx.graphics.getDeltaTime();
-
-        enemyHitbox.set(position.x, position.y, 32, 32);
-
-        game.batch.draw((TextureRegion) super.animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
-        super.position.y -= 2;
+        super.hitboxWidth = 32;
+        super.hitboxHeight = 32;
     }
 
 

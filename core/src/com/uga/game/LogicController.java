@@ -27,7 +27,7 @@ public class LogicController {
         }
         for (int i = 0; i < enemyProjectilesOnScreen.size(); i++){
             enemyProjectilesOnScreen.get(i).render(game.batch);
-            if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).enemyHitbox)){
+            if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).hitbox)){
                 playerHurt.play();
                 player.setHearts(-1);
                 enemyProjectilesOnScreen.remove(i);

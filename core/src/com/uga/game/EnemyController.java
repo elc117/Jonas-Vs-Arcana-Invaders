@@ -55,7 +55,7 @@ public class EnemyController {
                 continue;
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
-                if(entity.enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).allyHitbox)) {
+                if(entity.enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).hitbox)) {
                     enemyHurt.play();
                     if (entity instanceof Boss){
                         ((Boss) entity).changeHealthPoints();
