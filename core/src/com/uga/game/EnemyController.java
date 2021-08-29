@@ -8,14 +8,14 @@ import java.util.List;
 
 public class EnemyController {
     static long lastEnemy = System.currentTimeMillis();
-    static final long enemyCoolDown = 500;
+    static final long enemyCoolDown = 300;
 
     private static Sound playerHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/playerHurt.wav"));
     private static Sound enemyHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemyHurt.wav"));
 
     public static void spawn(List<Entity> enemiesOnScreen, JonasVsArcanaInvaders game){
         long time = System.currentTimeMillis();
-        if (enemiesOnScreen.size() < 5 && time > lastEnemy + enemyCoolDown){
+        if (enemiesOnScreen.size() < 5 + game.getLevel()*2 && time > lastEnemy + enemyCoolDown){
             int enemyType = (int) ((Math.random() * 10) % 3);
             int enemyX = (int) ((Math.random() * 384) + 128);
             if (enemyType == 0){
