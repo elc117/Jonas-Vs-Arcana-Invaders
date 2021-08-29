@@ -1,6 +1,5 @@
 package com.uga.game;
 
-import com.badlogic.gdx.math.Rectangle;
 
 public class Heart extends Obstacle{
 

@@ -7,8 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.List;
 
 public class EnemyController {
-    static long lastEnemy = System.currentTimeMillis();
-    static final long enemyCoolDown = 300;
+    private static long lastEnemy = System.currentTimeMillis();
+    private static final long enemyCoolDown = 300;
 
     private static Sound playerHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/playerHurt.wav"));
     private static Sound enemyHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/enemyHurt.wav"));

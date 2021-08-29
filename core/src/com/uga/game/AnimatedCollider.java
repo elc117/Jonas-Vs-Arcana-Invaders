@@ -13,7 +13,7 @@ public class AnimatedCollider {
     protected String spritesheet;
     protected int frames;
     protected Animation animation;
-    int direction;
+    protected int direction;
 
     public void setPosition(float x, float y) {
         position = new Vector2();

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameScreen extends ScreenAdapter {
-    JonasVsArcanaInvaders game;
-    Player player;
-    int level;
+    private JonasVsArcanaInvaders game;
+    private Player player;
+    private int level;
 
     public GameScreen(JonasVsArcanaInvaders game) {
         this.game = game;
@@ -22,14 +22,14 @@ public class GameScreen extends ScreenAdapter {
         this.scenario();
     }
 
-    List<Entity> enemiesOnScreen = new ArrayList<>();
-    List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
-    List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
-    List<Obstacle> obstaclesOnScreen = new ArrayList<>();
+    private List<Entity> enemiesOnScreen = new ArrayList<>();
+    private List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
+    private List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
+    private List<Obstacle> obstaclesOnScreen = new ArrayList<>();
 
-    Scenario scenario = new Scenario();
-    Scenario scenario2 = new Scenario();
-    UI ui = new UI();
+    private Scenario scenario = new Scenario();
+    private Scenario scenario2 = new Scenario();
+    private UI ui = new UI();
 
     public void scenario(){
         player.setPosition(game.getWidth()/2f, 200);

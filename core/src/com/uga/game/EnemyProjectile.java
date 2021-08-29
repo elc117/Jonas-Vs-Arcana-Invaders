@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class EnemyProjectile extends Projectile {
-    float elapsedTime;
 
     public EnemyProjectile(){
         super.hitbox = new Rectangle();
@@ -20,6 +19,7 @@ public class EnemyProjectile extends Projectile {
         hitbox.set(position.x + super.hitboxSize, position.y + super.hitboxSize, super.hitboxSize, super.hitboxSize);
 
         batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        super.position.x += (Math.random() - 0.5)*5; //efeito de movimento
         super.position.y -= 6;
     }
 }

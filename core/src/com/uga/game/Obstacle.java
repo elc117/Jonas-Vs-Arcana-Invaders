@@ -10,7 +10,7 @@ public class Obstacle extends AnimatedCollider{
     protected Rectangle hitbox;
     protected int damage;
     protected int buff = 0;
-    float elapsedTime;
+    private float elapsedTime;
     protected int hitboxWidth;
     protected int hitboxHeight;
     public Obstacle(){

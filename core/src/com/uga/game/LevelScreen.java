@@ -11,25 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelScreen extends ScreenAdapter{
-    JonasVsArcanaInvaders game;
+    private JonasVsArcanaInvaders game;
 
     private static Sound letter = Gdx.audio.newSound(Gdx.files.internal("Sounds/letters.wav"));
-    float volume = 1;
+    private float volume = 1;
 
     private BitmapFont font = new BitmapFont();
-    long fontLastWrite = System.currentTimeMillis();
-    int writeControl = 0;
-    int skipLine = 0;
-    int arrayPosition = 0;
-    int drawx = 64, drawy = 448;
+    private long fontLastWrite = System.currentTimeMillis();
+    private int writeControl = 0;
+    private int skipLine = 0;
+    private int arrayPosition = 0;
+    private int drawx = 64, drawy = 448;
 
-    int textSpeed = 100; // Tempo em milissegundos, quanto menor, mais rapido
+    private int textSpeed = 100; // Tempo em milissegundos, quanto menor, mais rapido
 
-    Texture levelImages;
-    TextureRegion levelImage[][];
+    private Texture levelImages;
+    private TextureRegion levelImage[][];
 
-    String[] history = new String[5];
-    List<String> receiveHistory = new ArrayList<>();
+    private String[] history = new String[5];
+    private List<String> receiveHistory = new ArrayList<>();
 
     public LevelScreen(JonasVsArcanaInvaders game){
         this.history[0] = "Jonas estava indo para a universidade quando avistou vários alunos correndo para fora do campus. Confuso, Jonas percebeu um velho senhor caído em meio à multidão." +
@@ -90,7 +90,6 @@ public class LevelScreen extends ScreenAdapter{
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         game.getBatch().begin();
-        //letter.stop();
         if (this.verifyDraw() && this.verifyNullPointer()) {
             char character = history[game.getLevel()-1].charAt(writeControl);
             if (character != ' ') {

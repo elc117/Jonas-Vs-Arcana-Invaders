@@ -6,8 +6,8 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.List;
 
 public class ObstacleController {
-    static long lastObstacle = System.currentTimeMillis();
-    static final long obstacleCoolDown = 2000;
+    private static long lastObstacle = System.currentTimeMillis();
+    private static final long obstacleCoolDown = 2000;
 
     private static Sound obstacleSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/obstacle.wav"));
     private static Sound powerUpSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/powerUp.wav"));

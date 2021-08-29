@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.List;
 
 public class Octominion extends Entity{
-    float elapsedTime;
+    private float elapsedTime;
 
     public Octominion(){
         super.spritesheet = "Octominion-Spritesheet.png";

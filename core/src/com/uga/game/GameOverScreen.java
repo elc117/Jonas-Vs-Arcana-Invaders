@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class GameOverScreen extends ScreenAdapter {
-    JonasVsArcanaInvaders game;
-    Texture texture;
+    private JonasVsArcanaInvaders game;
+    private Texture texture;
     private BitmapFont font = new BitmapFont();
     private String playerScore;
 

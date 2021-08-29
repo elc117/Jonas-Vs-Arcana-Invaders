@@ -9,8 +9,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TitleScreen extends ScreenAdapter {
 
-    JonasVsArcanaInvaders game;
-    Texture texture;
+    private JonasVsArcanaInvaders game;
+    private Texture texture;
     public TitleScreen(JonasVsArcanaInvaders game) {
         this.game = game;
         texture = new Texture("Screens/TitleScreen.png");
