@@ -9,7 +9,9 @@ import java.util.List;
 public class GameScreen extends ScreenAdapter {
     JonasVsArcanaInvaders game;
     Player player;
+    Boss boss;
     int level;
+    boolean spawnedBoss = false;
 
     public GameScreen(JonasVsArcanaInvaders game) {
         this.game = game;
@@ -50,8 +52,12 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void checkNextLevel(Player player){
-        if(player.getScore() == 200 * Math.pow(game.getLevel(),2) && game.getLevel() <= 4){
+        if(player.getScore() == 200 * Math.pow(game.getLevel(),2) && game.getLevel() <= 0){
             game.changeLevel();
+        } else if(player.getScore() == 200 * Math.pow(game.getLevel(),2) && game.getLevel() == 1 && !spawnedBoss){
+            boss = new Boss();
+            enemiesOnScreen.add(boss);
+            spawnedBoss = true;
         }
     }
 
@@ -72,6 +78,7 @@ public class GameScreen extends ScreenAdapter {
         EnemyController.checkOverlaps(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
         LogicController.checkScenario(game, scenario, scenario2);
         LogicController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+
 
         player.render(game);
         ui.render(game, player);
