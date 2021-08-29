@@ -45,12 +45,12 @@ public class GameScreen extends ScreenAdapter {
 
     private void checkGameOver(Player player){
         if(player.getHearts() <= 0){
-            game.setScreen(new GameOver(game, 0, player));
+            game.setScreen(new GameOverScreen(game));
         }
     }
 
     private void checkNextLevel(Player player){
-        if(player.getScore() == 100 * game.getLevel()){
+        if(player.getScore() == 200 * game.getLevel() && game.getLevel() <= 4){
             game.changeLevel();
         }
     }

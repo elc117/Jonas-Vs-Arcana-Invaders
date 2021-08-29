@@ -5,15 +5,19 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class TitleScreen extends ScreenAdapter {
-
+public class WinScreen extends ScreenAdapter {
     JonasVsArcanaInvaders game;
     Texture texture;
-    public TitleScreen(JonasVsArcanaInvaders game) {
+    private BitmapFont font = new BitmapFont();
+    private String playerScore;
+
+    public WinScreen(JonasVsArcanaInvaders game) {
         this.game = game;
-        texture = new Texture("Screens/TitleScreen.png");
+        texture = new Texture("Screens/WinScreen.png");
+        playerScore = String.valueOf(game.getPlayer().getScore());
     }
 
     @Override
@@ -22,7 +26,11 @@ public class TitleScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    game.setScreen(new LevelScreen(game));
+                    game.getPlayer().setScore(-1 * game.getPlayer().getScore());
+                    game.setScreen(new GameScreen(game));
+                }
+                if (keyCode == Input.Keys.ESCAPE) {
+                    Gdx.app.exit();
                 }
                 return true;
             }
@@ -34,6 +42,7 @@ public class TitleScreen extends ScreenAdapter {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
         game.batch.draw(texture,0,0);
+        font.draw(game.batch, playerScore, game.getWidth()/2f, game.getHeight()/2f + 80);
         game.batch.end();
     }
 

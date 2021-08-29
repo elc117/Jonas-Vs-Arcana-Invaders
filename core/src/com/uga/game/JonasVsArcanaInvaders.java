@@ -25,8 +25,8 @@ public class JonasVsArcanaInvaders extends Game {
     public int getLevel() {return level; }
 
     public void changeLevel() {
-        this.level++;
-        this.setScreen(new GameScreen(this));
+        if (level <= 4){this.level++;}
+        this.setScreen(new LevelScreen(this));
     }
 
     public Player getPlayer() {return player;}

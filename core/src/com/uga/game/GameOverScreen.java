@@ -8,18 +8,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class GameOver extends ScreenAdapter {
+public class GameOverScreen extends ScreenAdapter {
     JonasVsArcanaInvaders game;
     Texture texture;
-    int currentScreen;
     private BitmapFont font = new BitmapFont();
     private String playerScore;
 
-    public GameOver(JonasVsArcanaInvaders game, int currentScreen, Player player) {
+    public GameOverScreen(JonasVsArcanaInvaders game) {
         this.game = game;
-        texture = new Texture("GameOverScreen.png");
-        this.currentScreen = currentScreen;
-        playerScore = String.valueOf(player.getScore());
+        texture = new Texture("Screens/GameOverScreen.png");
+        playerScore = String.valueOf(game.getPlayer().getScore());
     }
 
     @Override
