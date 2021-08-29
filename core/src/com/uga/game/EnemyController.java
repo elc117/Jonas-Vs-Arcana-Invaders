@@ -45,7 +45,7 @@ public class EnemyController {
             entity.render(game);
             entity.verifyShot(enemyProjectilesOnScreen);
             if(player.allyHitbox.overlaps(entity.enemyHitbox)){
-                playerHurt.play();
+                playerHurt.play(0.3f);
                 if (!(entity instanceof Boss)){enemiesOnScreen.remove(i);}
                 player.setHearts(-1);
                 continue;
@@ -56,7 +56,7 @@ public class EnemyController {
             }
             for (int j = 0; j < allyProjectilesOnScreen.size(); j++){
                 if(entity.enemyHitbox.overlaps(allyProjectilesOnScreen.get(j).hitbox)) {
-                    enemyHurt.play();
+                    enemyHurt.play(0.3f);
                     if (entity instanceof Boss){
                         ((Boss) entity).changeHealthPoints();
                         if(((Boss) entity).getHealthPoints() <= 0){
@@ -65,7 +65,7 @@ public class EnemyController {
                             game.setBossStatus(2);
                         }
                     } else {
-                        player.setScore(100);
+                        player.setScore(10);
                         enemiesOnScreen.remove(i);
                     }
                     allyProjectilesOnScreen.remove(j);

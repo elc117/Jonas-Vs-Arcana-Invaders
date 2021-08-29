@@ -11,7 +11,7 @@ public class AllyProjectile extends Projectile {
     public AllyProjectile(){
         super.spritesheet = "Projectile-Spritesheet.png";
         sound = Gdx.audio.newSound(Gdx.files.internal("Sounds/projectile.wav"));
-        sound.play();
+        sound.play(0.3f);
     }
 
     @Override

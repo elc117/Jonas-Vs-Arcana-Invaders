@@ -18,6 +18,8 @@ public class WinScreen extends ScreenAdapter {
         this.game = game;
         texture = new Texture("Screens/WinScreen.png");
         playerScore = String.valueOf(game.getPlayer().getScore());
+        game.getInGameMusic().stop();
+        game.getMenuMusic().play();
     }
 
     @Override
@@ -26,6 +28,8 @@ public class WinScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
+                    game.getMenuMusic().stop();
+                    game.getInGameMusic().play();
                     game.getPlayer().setScore(-1 * game.getPlayer().getScore());
                     game.setScreen(new GameScreen(game));
                 }

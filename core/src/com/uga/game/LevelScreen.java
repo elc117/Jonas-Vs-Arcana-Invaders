@@ -18,6 +18,7 @@ public class LevelScreen extends ScreenAdapter{
     private float volume = 1;
 
     private BitmapFont font = new BitmapFont();
+    private Texture continueMessage;
     private long fontLastWrite = System.currentTimeMillis();
     private int writeControl = 0;
     private int skipLine = 0;
@@ -42,6 +43,7 @@ public class LevelScreen extends ScreenAdapter{
         this.history[3] = "Após chutar alguns monstros e degustar uma deliciosa carne de panela, Jonas decidiu dar um basta nesta invasão, e rumou em direção ao foco dos invasores, o epicentro do conhecimento... A Biblioteca Central!";
         this.history[4] = "Sem acreditar que havia chegado ao fim, Jonas retornou triunfante para a entrada do campus. Havia saído de casa como um simples aluno, mas hoje, retornou como um herói!";
         this.game = game;
+        continueMessage = new Texture("ContinueMessage.png");
         levelImages = new Texture("LevelImages.png");
         levelImage = TextureRegion.split(levelImages,384,256);
         receiveHistory.add("");
@@ -105,9 +107,10 @@ public class LevelScreen extends ScreenAdapter{
             }
             writeControl++;
         }
-        for(int i = 0; i <= arrayPosition; i++) {
+        for (int i = 0; i <= arrayPosition; i++) {
             font.draw(game.getBatch(), receiveHistory.get(i), drawx, drawy - i*24);
         }
+        game.getBatch().draw(continueMessage, 0, 0);
         game.getBatch().draw(levelImage[0][game.getLevel() - 1],128,512);
         game.getBatch().end();
     }

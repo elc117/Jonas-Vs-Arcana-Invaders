@@ -13,17 +13,14 @@ public class TitleScreen extends ScreenAdapter {
     private JonasVsArcanaInvaders game;
     private Texture texture;
 
-    public Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Musics/menuMusic.mp3"));
-    public Music inGameMusic = Gdx.audio.newMusic(Gdx.files.internal("Musics/inGameMusic.mp3"));
-
     public TitleScreen(JonasVsArcanaInvaders game) {
         this.game = game;
         texture = new Texture("Screens/TitleScreen.png");
-        this.menuMusic.setVolume(0.5f);
-        this.menuMusic.setLooping(true);
-        this.inGameMusic.setVolume(0.5f);
-        this.inGameMusic.setLooping(true);
-        this.menuMusic.play();
+        game.getMenuMusic().setVolume(0.3f);
+        game.getMenuMusic().setLooping(true);
+        game.getInGameMusic().setVolume(0.3f);
+        game.getInGameMusic().setLooping(true);
+        game.getMenuMusic().play();
     }
 
     @Override
@@ -32,8 +29,8 @@ public class TitleScreen extends ScreenAdapter {
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
-                    menuMusic.stop();
-                    inGameMusic.play();
+                    game.getMenuMusic().stop();
+                    game.getInGameMusic().play();
                     game.setScreen(new LevelScreen(game));
                 }
                 return true;

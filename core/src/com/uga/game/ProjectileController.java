@@ -21,7 +21,7 @@ public class ProjectileController {
         for (int i = 0; i < enemyProjectilesOnScreen.size(); i++){
             enemyProjectilesOnScreen.get(i).render(game.getBatch());
             if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).hitbox)){
-                playerHurt.play();
+                playerHurt.play(0.3f);
                 player.setHearts(-1);
                 enemyProjectilesOnScreen.remove(i);
             } else if (enemyProjectilesOnScreen.get(i).getPosition().y < -64){
