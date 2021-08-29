@@ -12,10 +12,14 @@ public class JonasVsArcanaInvaders extends Game {
     private int width = 640;
     private int level = 1;
     private Player player = new Player();
-    public SpriteBatch batch;
+    private SpriteBatch batch;
 
     // 0 = Não spawnado; 1 = Spawnado; 2 = Derrotado
     private int bossStatus = 0;
+
+    public SpriteBatch getBatch(){
+        return this.batch;
+    }
 
     public int getBossStatus()  { return bossStatus; }
 

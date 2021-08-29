@@ -94,7 +94,7 @@ public class Player extends AnimatedCollider{
         }
 
 
-        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
     }
 
     public void verifyShot(List<AllyProjectile> allyProjectilesOnScreen){

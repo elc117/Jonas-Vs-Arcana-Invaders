@@ -54,18 +54,19 @@ public class ObstacleController {
 
     public static void checkOverlaps(List<Obstacle> obstacleOnScreen, JonasVsArcanaInvaders game, Player player){
         for (int i = 0; i < obstacleOnScreen.size(); i++){
-            obstacleOnScreen.get(i).render(game);
-            if(player.allyHitbox.overlaps(obstacleOnScreen.get(i).hitbox)){
+            Obstacle obstacle = obstacleOnScreen.get(i);
+            obstacle.render(game);
+            if(player.allyHitbox.overlaps(obstacle.hitbox)){
                 // If para solucionar bug do coracao fechar o game, podemos mudar de local dps
-                if(player.getHearts() - obstacleOnScreen.get(i).damage <= 5) {
-                    if(obstacleOnScreen.get(i).damage > 0){
+                if(player.getHearts() - obstacle.damage <= 5) {
+                    if(obstacle.damage > 0){
                         obstacleSound.play();
                     } else {
                         powerUpSound.play();
                     }
-                    player.setHearts(-1 * obstacleOnScreen.get(i).damage);
+                    player.setHearts(-1 * obstacle.damage);
                 }
-                player.setBuff(obstacleOnScreen.get(i).buff);
+                player.setBuff(obstacle.buff);
                 obstacleOnScreen.remove(i);
                 continue;
             }

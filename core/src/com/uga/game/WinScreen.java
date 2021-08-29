@@ -40,10 +40,10 @@ public class WinScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        game.batch.begin();
-        game.batch.draw(texture,0,0);
-        font.draw(game.batch, playerScore, game.getWidth()/2f, game.getHeight()/2f + 80);
-        game.batch.end();
+        game.getBatch().begin();
+        game.getBatch().draw(texture,0,0);
+        font.draw(game.getBatch(), playerScore, game.getWidth()/2f, game.getHeight()/2f + 80);
+        game.getBatch().end();
     }
 
     @Override

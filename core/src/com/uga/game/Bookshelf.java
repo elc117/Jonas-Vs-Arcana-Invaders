@@ -4,6 +4,9 @@ public class Bookshelf extends Obstacle{
 
     public Bookshelf(){
         super.spritesheet = "Obstacles/Bookshelf.png";
+        super.frames = 1;
+        super.damage = 1;
+        super.buff = 2;
         super.spriteSize = 192;
         super.hitboxWidth = 128;
         super.hitboxHeight = 160;

@@ -5,28 +5,21 @@ import com.badlogic.gdx.audio.Sound;
 
 import java.util.List;
 
-public class LogicController {
+public class ProjectileController {
 
     private static Sound playerHurt = Gdx.audio.newSound(Gdx.files.internal("Sounds/playerHurt.wav"));
 
-    public static void checkScenario(JonasVsArcanaInvaders game, Scenario scenario, Scenario scenario2){
-        if(scenario.getLimit() == 0){
-            scenario2.setLimit(game.getHeight());
-        } else if (scenario2.getLimit() == -256){
-            scenario.setLimit(game.getHeight());
-        }
-    }
 
     public static void checkProjectiles(JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
         player.verifyShot(allyProjectilesOnScreen);
         for (int i = 0; i < allyProjectilesOnScreen.size(); i++){
-            allyProjectilesOnScreen.get(i).render(game.batch);
+            allyProjectilesOnScreen.get(i).render(game.getBatch());
             if(allyProjectilesOnScreen.get(i).getPosition().y > game.getHeight() + 64){
                 allyProjectilesOnScreen.remove(i);
             }
         }
         for (int i = 0; i < enemyProjectilesOnScreen.size(); i++){
-            enemyProjectilesOnScreen.get(i).render(game.batch);
+            enemyProjectilesOnScreen.get(i).render(game.getBatch());
             if (player.allyHitbox.overlaps(enemyProjectilesOnScreen.get(i).hitbox)){
                 playerHurt.play();
                 player.setHearts(-1);

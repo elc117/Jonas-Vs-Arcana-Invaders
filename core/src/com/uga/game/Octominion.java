@@ -30,13 +30,13 @@ public class Octominion extends Entity{
         enemyHitbox.set(position.x, position.y, 64, 64);
 
 
-        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.setMovement(game,2, 5);
     }
 
 
     @Override
     public void verifyShot(List<EnemyProjectile> projectilesOnScreen){
-        //Precisamos dar um jeito de não usar isso aqui
+        //parece que quebramos um principio da orientacao a objetos kkkkkk
     }
 }

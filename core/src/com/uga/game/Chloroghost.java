@@ -25,7 +25,7 @@ public class Chloroghost extends Entity{
         enemyHitbox.set(position.x, position.y, 64, 64);
 
 
-        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.setMovement(game,2, 3);
 
     }

@@ -28,6 +28,7 @@ public class GameOverScreen extends ScreenAdapter {
                 if (keyCode == Input.Keys.SPACE) {
                     game.getPlayer().setScore(-1 * game.getPlayer().getScore());
                     game.getPlayer().setHearts(5);
+                    game.getPlayer().setBuff(2);
                     game.setScreen(new GameScreen(game));
                 }
                 return true;
@@ -38,10 +39,10 @@ public class GameOverScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        game.batch.begin();
-        game.batch.draw(texture,0,0);
-        font.draw(game.batch, playerScore, game.getWidth()/2f, game.getHeight()/2f + 80);
-        game.batch.end();
+        game.getBatch().begin();
+        game.getBatch().draw(texture,0,0);
+        font.draw(game.getBatch(), playerScore, game.getWidth()/2f, game.getHeight()/2f + 80);
+        game.getBatch().end();
     }
 
     @Override

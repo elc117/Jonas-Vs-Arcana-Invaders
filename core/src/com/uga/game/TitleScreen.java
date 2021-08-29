@@ -32,9 +32,9 @@ public class TitleScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        game.batch.begin();
-        game.batch.draw(texture,0,0);
-        game.batch.end();
+        game.getBatch().begin();
+        game.getBatch().draw(texture,0,0);
+        game.getBatch().end();
     }
 
     @Override

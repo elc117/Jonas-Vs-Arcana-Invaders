@@ -14,10 +14,7 @@ public class Obstacle extends AnimatedCollider{
     protected int hitboxWidth;
     protected int hitboxHeight;
     public Obstacle(){
-        frames = 1;
         hitbox = new Rectangle();
-        damage = 1;
-        buff = 2;
     }
 
 
@@ -27,7 +24,7 @@ public class Obstacle extends AnimatedCollider{
         hitbox.set(position.x, position.y, hitboxWidth, hitboxHeight);
 
 
-        game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
+        game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
         super.setMovement(game,0, 2);
     }
 

@@ -55,32 +55,40 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
+    private static void checkScenario(JonasVsArcanaInvaders game, Scenario scenario, Scenario scenario2){
+        if(scenario.getLimit() == 0){
+            scenario2.setLimit(game.getHeight());
+        } else if (scenario2.getLimit() == -256){
+            scenario.setLimit(game.getHeight());
+        }
+    }
+
     @Override
     public void render (float delta) {
         this.checkGameOver(player);
         this.checkNextLevel(player);
         ScreenUtils.clear(0, 0, 0, 1);
-        game.batch.begin();
+        game.getBatch().begin();
 
-        scenario.render(game.batch);
-        scenario2.render(game.batch);
+        scenario.render(game.getBatch());
+        scenario2.render(game.getBatch());
 
         ObstacleController.spawn(obstaclesOnScreen, game, level);
         ObstacleController.checkOverlaps(obstaclesOnScreen,game,player);
 
         EnemyController.spawn(enemiesOnScreen, game);
         EnemyController.checkOverlaps(enemiesOnScreen, game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
-        LogicController.checkScenario(game, scenario, scenario2);
-        LogicController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
+        this.checkScenario(game, scenario, scenario2);
+        ProjectileController.checkProjectiles(game, player, allyProjectilesOnScreen, enemyProjectilesOnScreen);
 
 
         player.render(game);
         ui.render(game, player);
-        game.batch.end();
+        game.getBatch().end();
     }
 
     @Override
     public void dispose () {
-        game.batch.dispose();
+        game.getBatch().dispose();
     }
 }

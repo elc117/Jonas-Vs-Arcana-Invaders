@@ -89,7 +89,7 @@ public class LevelScreen extends ScreenAdapter{
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        game.batch.begin();
+        game.getBatch().begin();
         //letter.stop();
         if (this.verifyDraw() && this.verifyNullPointer()) {
             char character = history[game.getLevel()-1].charAt(writeControl);
@@ -106,10 +106,10 @@ public class LevelScreen extends ScreenAdapter{
             writeControl++;
         }
         for(int i = 0; i <= arrayPosition; i++) {
-            font.draw(game.batch, receiveHistory.get(i), drawx, drawy - i*24);
+            font.draw(game.getBatch(), receiveHistory.get(i), drawx, drawy - i*24);
         }
-        game.batch.draw(levelImage[0][game.getLevel() - 1],128,512);
-        game.batch.end();
+        game.getBatch().draw(levelImage[0][game.getLevel() - 1],128,512);
+        game.getBatch().end();
     }
 
     @Override

@@ -39,7 +39,7 @@ public class Boss extends Entity{
 
             super.enemyHitbox.set(position.x, position.y, 64, 64);
 
-            game.batch.draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), position.x, position.y);
+            game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), position.x, position.y);
 
             if (position.y <= game.getHeight() - this.spriteSize){
                 super.setMovement(game,2, 0);
