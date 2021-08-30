@@ -3,6 +3,8 @@ package com.uga.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -14,10 +16,10 @@ public class Player extends AnimatedCollider{
     private static int speed = 300;
     private float elapsedTime;
     private long lastShot = System.currentTimeMillis();
-    private long lastDamage = 0;
-    private long damageCoolDown = 100;
-    private long buffTime = 3000;
     private long projectileCoolDown = 300;
+    private long lastDamage = 0;
+    private long damageCoolDown = 1000; //Player fica 1 segundo intangivel apos tomar dano
+    private long buffTime = 3000;
     private long currentBuffTime = 0;
     protected Rectangle allyHitbox;
     private int score = 0;
@@ -76,6 +78,7 @@ public class Player extends AnimatedCollider{
     }
 
     public void render(JonasVsArcanaInvaders game){
+        long time = System.currentTimeMillis();
         elapsedTime += Gdx.graphics.getDeltaTime();
 
         allyHitbox.set(super.position.x, super.position.y, 64, 64);
@@ -93,6 +96,12 @@ public class Player extends AnimatedCollider{
             super.position.y += Player.speed * Gdx.graphics.getDeltaTime();
         }
 
+        if (time < this.lastDamage + this.damageCoolDown){
+            super.spritesheet = "Jonas-Hurt-Sheet.png";
+        } else {
+            super.spritesheet = "Jonas-Spritesheet.png";
+        }
+        this.setAnimation();
 
         game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), super.position.x, super.position.y);
     }
