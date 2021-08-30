@@ -25,7 +25,7 @@ public class LevelScreen extends ScreenAdapter{
     private int arrayPosition = 0;
     private int drawx = 64, drawy = 448;
 
-    private int textSpeed = 100; // Tempo em milissegundos, quanto menor, mais rapido
+    private int textSpeed = 100; // text time in ms
 
     private Texture levelImages;
     private TextureRegion levelImage[][];
@@ -35,6 +35,7 @@ public class LevelScreen extends ScreenAdapter{
 
 
     public LevelScreen(JonasVsArcanaInvaders game){
+        //array of history elements
         this.history[0] = "Jonas estava indo para a universidade quando avistou vários alunos correndo para fora do campus. Confuso, Jonas percebeu um velho senhor caído em meio à multidão." +
                 "Jonas imediatamente foi ajudá-lo. O velho revelou ser um antigo sábio da dimensão de Arcana, invadida por monstros que desejavam instaurar a ignorância. Ele veio para nosso mundo tentar impedir que a Terra tivesse o mesmo destino...  " +
                 "Com um último sacrifício, o ancião transferiu para Jonas seu poder, a única fonte de poder capaz de destruir os monstros de Arcana. O conhecimento. Jonas, impelido por sua coragem e determinação, adentrou o campus, com o objetivo de expurgar os invasores.";
@@ -74,6 +75,7 @@ public class LevelScreen extends ScreenAdapter{
     }
 
     private boolean verifyNullPointer(){
+        //verify if string ends
         if (writeControl < history[game.getLevel()-1].length()){
             return true;
         }
@@ -81,6 +83,7 @@ public class LevelScreen extends ScreenAdapter{
     }
 
     private boolean verifyDraw(){
+        //verifies if can draw because of cooldown
         long current = System.currentTimeMillis();
         if (current > fontLastWrite + textSpeed){
             fontLastWrite = current;
@@ -94,13 +97,14 @@ public class LevelScreen extends ScreenAdapter{
         ScreenUtils.clear(0, 0, 0, 1);
         game.getBatch().begin();
         if (this.verifyDraw() && this.verifyNullPointer()) {
+            //if cooldown permits and string doesnt end, draw character in screen
             char character = history[game.getLevel()-1].charAt(writeControl);
             if (character != ' ') {
                 letter.play(volume);
             }
             receiveHistory.set(arrayPosition, receiveHistory.get(arrayPosition) + character);
             skipLine++;
-            if (skipLine >= 45 && character == ' '){
+            if (skipLine >= 45 && character == ' '){ //just skips line if space, doesnt break words
                 skipLine = 0;
                 receiveHistory.add("");
                 arrayPosition++;
@@ -108,7 +112,7 @@ public class LevelScreen extends ScreenAdapter{
             writeControl++;
         }
         for (int i = 0; i <= arrayPosition; i++) {
-            font.draw(game.getBatch(), receiveHistory.get(i), drawx, drawy - i*24);
+            font.draw(game.getBatch(), receiveHistory.get(i), drawx, drawy - i*24);//draws the final string in the screen
         }
         game.getBatch().draw(continueMessage, 0, 0);
         game.getBatch().draw(levelImage[0][game.getLevel() - 1],128,512);

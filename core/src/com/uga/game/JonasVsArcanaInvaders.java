@@ -17,7 +17,7 @@ public class JonasVsArcanaInvaders extends Game {
     private Music menuMusic;
     private Music inGameMusic;
 
-    // 0 = Não spawnado; 1 = Spawnado; 2 = Derrotado
+    // 0 = nonSpawned; 1 = Spawned; 2 = Defeated
     private int bossStatus = 0;
 
     public SpriteBatch getBatch(){

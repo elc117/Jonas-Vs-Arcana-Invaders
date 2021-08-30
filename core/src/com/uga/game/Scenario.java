@@ -8,7 +8,7 @@ public class Scenario {
     private float limit;
 
     public void setScenario(int level){
-        switch (level){
+        switch (level){ //sets scenario according to level
             case 2:
                 texture = new Texture("Scenarios/CT-export.png");
                 break;

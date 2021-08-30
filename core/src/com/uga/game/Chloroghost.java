@@ -32,6 +32,7 @@ public class Chloroghost extends Entity{
 
     @Override
     public void verifyShot(List<EnemyProjectile> projectilesOnScreen){
+        //launchs the projectile with cooldown
         long time = System.currentTimeMillis();
         if(time > lastShot + projectileCoolDown){
             EnemyProjectile enemyprojectile = new EnemyProjectile();

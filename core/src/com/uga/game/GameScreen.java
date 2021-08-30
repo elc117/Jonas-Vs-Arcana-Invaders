@@ -11,6 +11,16 @@ public class GameScreen extends ScreenAdapter {
     private Player player;
     private int level;
 
+
+    private List<Entity> enemiesOnScreen = new ArrayList<>();
+    private List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
+    private List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
+    private List<Obstacle> obstaclesOnScreen = new ArrayList<>();
+
+    private Scenario scenario = new Scenario();
+    private Scenario scenario2 = new Scenario();
+    private UI ui = new UI();
+
     public GameScreen(JonasVsArcanaInvaders game) {
         this.game = game;
         this.player = game.getPlayer();
@@ -22,16 +32,9 @@ public class GameScreen extends ScreenAdapter {
         this.scenario();
     }
 
-    private List<Entity> enemiesOnScreen = new ArrayList<>();
-    private List<AllyProjectile> allyProjectilesOnScreen = new ArrayList<>();
-    private List<EnemyProjectile> enemyProjectilesOnScreen = new ArrayList<>();
-    private List<Obstacle> obstaclesOnScreen = new ArrayList<>();
-
-    private Scenario scenario = new Scenario();
-    private Scenario scenario2 = new Scenario();
-    private UI ui = new UI();
 
     public void scenario(){
+        //initializes the elements of the game
         player.setPosition(game.getWidth()/2f, 200);
         player.setAnimation();
 
@@ -58,7 +61,7 @@ public class GameScreen extends ScreenAdapter {
     private static void checkScenario(JonasVsArcanaInvaders game, Scenario scenario, Scenario scenario2){
         if(scenario.getLimit() == 0){
             scenario2.setLimit(game.getHeight());
-        } else if (scenario2.getLimit() == -256){
+        } else if (scenario2.getLimit() == -256){ //rolls the scenario
             scenario.setLimit(game.getHeight());
         }
     }

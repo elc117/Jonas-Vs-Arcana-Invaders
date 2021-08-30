@@ -15,11 +15,11 @@ public class ObstacleController {
     public static void spawn(List<Obstacle> obstaclesOnScreen, JonasVsArcanaInvaders game, int level){
         long time = System.currentTimeMillis();
         if (obstaclesOnScreen.size() < 3 && time > lastObstacle + obstacleCoolDown){
-            int obstacleType = (int) ((Math.random() * 10) % 3);
+            int obstacleType = (int) ((Math.random() * 10) % 3); //random obstacle type
             int obstacleX = (int) ((Math.random() * 384) + 128);
             if (obstacleType == 0){
                 Obstacle obstacle;
-                switch (level) {
+                switch (level) { //selects the object sprite according to current level
                     case 2:
                         obstacle = new ComputerTable();
                         break;
@@ -57,7 +57,7 @@ public class ObstacleController {
             Obstacle obstacle = obstacleOnScreen.get(i);
             obstacle.render(game);
             if(player.allyHitbox.overlaps(obstacle.hitbox)){
-                // If para solucionar bug do coracao fechar o game, podemos mudar de local dps
+                //verifies if can low life
                 if(player.getHearts() - obstacle.damage <= 5) {
                     if(obstacle.damage > 0){
                         obstacleSound.play();

@@ -13,7 +13,7 @@ public class Octominion extends Entity{
     public Octominion(){
         super.spritesheet = "Octominion-Spritesheet.png";
         super.enemyHitbox = new Rectangle();
-        if (Math.random() > 0.5){
+        if (Math.random() > 0.5){ //random initial x direction
             super.direction = 1;
         }
         else{
@@ -37,6 +37,6 @@ public class Octominion extends Entity{
 
     @Override
     public void verifyShot(List<EnemyProjectile> projectilesOnScreen){
-        //parece que quebramos um principio da orientacao a objetos kkkkkk
+        //well, we broke an OO principle
     }
 }

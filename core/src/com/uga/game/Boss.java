@@ -16,7 +16,7 @@ public class Boss extends Entity{
     public Boss(){
         super.spritesheet = "Boss-Spritesheet.png";
         super.enemyHitbox = new Rectangle();
-        if (Math.random() > 0.5){
+        if (Math.random() > 0.5){ //generates the boss in random direction
             super.direction = 1;
         }
         else{
@@ -41,6 +41,7 @@ public class Boss extends Entity{
 
             game.getBatch().draw((TextureRegion) animation.getKeyFrame(elapsedTime,true), position.x, position.y);
 
+            //boss walks until a position, then just uses x axis
             if (position.y <= game.getHeight() - this.spriteSize){
                 super.setMovement(game,2, 0);
             } else {
@@ -51,6 +52,7 @@ public class Boss extends Entity{
     @Override
     public void verifyShot(List<EnemyProjectile> projectilesOnScreen) {
         long time = System.currentTimeMillis();
+        //launch the projectile 3 times, then enter in cooldown
         if(time > lastShot + projectileCoolDown){
             EnemyProjectile enemyprojectile = new EnemyProjectile();
             enemyprojectile.setPosition(position.x, position.y);

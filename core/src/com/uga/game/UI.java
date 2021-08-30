@@ -27,7 +27,7 @@ public class UI {
     public void render(JonasVsArcanaInvaders game, Player player) {
         playerScore = String.valueOf(player.getScore());
 
-        // UI correspondente ao level, ou endless mode
+        // UI according to level or endless mode
         if(game.getLevel() <= 4){ game.getBatch().draw(backgrounds[0][game.getLevel() - 1],0,0);}
         else { game.getBatch().draw(backgrounds[0][4],0,0);}
         game.getBatch().draw(playerHearts[0][player.getHearts()],0,0);

@@ -30,7 +30,7 @@ public class AnimatedCollider {
         TextureRegion[][] tmpFrames = TextureRegion.split(texture,spriteSize,spriteSize);
         int index = 0;
         float fframes = frames;
-
+        //prepares everything to the animation
         animationFrames = new TextureRegion[frames];
 
         for (int i = 0; i < frames; i++){
@@ -41,6 +41,7 @@ public class AnimatedCollider {
     }
 
     protected void setMovement(JonasVsArcanaInvaders game, int x, int y){
+        //controls the speed and the direction of the displacement
         position.y -= y;
         if (position.x >= game.getWidth() - spriteSize){
             direction = -1;

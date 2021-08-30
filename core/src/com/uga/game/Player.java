@@ -18,7 +18,7 @@ public class Player extends AnimatedCollider{
     private long lastShot = System.currentTimeMillis();
     private long projectileCoolDown = 300;
     private long lastDamage = 0;
-    private long damageCoolDown = 1000; //Player fica 1 segundo intangivel apos tomar dano
+    private long damageCoolDown = 1000; //invencibility after get damage
     private long buffTime = 3000;
     private long currentBuffTime = 0;
     protected Rectangle allyHitbox;
@@ -43,7 +43,7 @@ public class Player extends AnimatedCollider{
         return this.hearts;
     }
 
-    public void setHearts(int health){
+    public void setHearts(int health){ //player gets damage or heal
         long time = System.currentTimeMillis();
         if (health >= 0){
             this.hearts += health;
@@ -53,7 +53,7 @@ public class Player extends AnimatedCollider{
         }
     }
 
-    public void setBuff(int buff){
+    public void setBuff(int buff){ //player receives a buff
         if (buff == 1){
             speed = 450;
             projectileCoolDown = 150;
@@ -65,7 +65,6 @@ public class Player extends AnimatedCollider{
         }
     }
 
-    // Provavelmente tem uma forma mais inteligente de fazer isso
     public int getBuffDuration(){
         long time = System.currentTimeMillis();
         float remainingTime = buffTime + (currentBuffTime - time);
@@ -78,6 +77,7 @@ public class Player extends AnimatedCollider{
     }
 
     public void render(JonasVsArcanaInvaders game){
+        //controls player movement and damage effect
         long time = System.currentTimeMillis();
         elapsedTime += Gdx.graphics.getDeltaTime();
 
@@ -107,6 +107,7 @@ public class Player extends AnimatedCollider{
     }
 
     public void verifyShot(List<AllyProjectile> allyProjectilesOnScreen){
+        //player creates new projectile
         long time = System.currentTimeMillis();
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && time > this.lastShot + this.projectileCoolDown){
             AllyProjectile allyProjectile = new AllyProjectile();

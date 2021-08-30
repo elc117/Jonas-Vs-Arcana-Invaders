@@ -11,6 +11,7 @@ public class ProjectileController {
 
 
     public static void checkProjectiles(JonasVsArcanaInvaders game, Player player, List<AllyProjectile> allyProjectilesOnScreen, List<EnemyProjectile> enemyProjectilesOnScreen){
+        //controles the projectiles, removing enemies/projectiles or damaging the player
         player.verifyShot(allyProjectilesOnScreen);
         for (int i = 0; i < allyProjectilesOnScreen.size(); i++){
             allyProjectilesOnScreen.get(i).render(game.getBatch());
